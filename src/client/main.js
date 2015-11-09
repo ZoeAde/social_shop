@@ -10,17 +10,17 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial'])
       .when('/', {
         templateUrl: 'partials/home.html'
       })
-      .when('/feed', {
-          templateUrl: 'partials/feed.html',
-          controller: 'MainCtrl'
-      })
-      .when('/form', {
-          templateUrl: 'partials/form.html',
-          controller: 'MainCtrl'
-      })
-      .when('/profile', {
-          templateUrl: 'partials/profile.html',
-          controller: 'MainCtrl'
-      })
+      // .when('/feed', {
+      //     templateUrl: 'partials/feed.html',
+      //     controller: 'MainCtrl'
+      // })
+      // .when('/form', {
+      //     templateUrl: 'partials/form.html',
+      //     controller: 'MainCtrl'
+      // })
+      // .when('/profile', {
+      //     templateUrl: 'partials/profile.html',
+      //     controller: 'MainCtrl'
+      // })
       .otherwise({redirectTo: '/'});
   }]);
