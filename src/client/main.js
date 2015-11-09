@@ -2,6 +2,7 @@
 
 var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial'])
 
+<<<<<<< HEAD
   .config(['$routeProvider', function ($routeProvider) {
 
     // $mdIconProvider.iconSet("avatar", 'icons/avatar-icons.svg', 128);
@@ -24,3 +25,17 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial'])
       // })
       .otherwise({redirectTo: '/'});
   }]);
+=======
+.config(['$routeProvider', function ($routeProvider) {
+  $routeProvider
+    .when('/', {
+      templateUrl: 'partials/home.html',
+      controller: 'mainControler'
+    })
+    .when('/form', {
+      templateUrl: 'partials/form.html',
+      controller: 'DemoCtrl'
+    })
+    .otherwise({redirectTo: '/'});
+}]);
+>>>>>>> original
