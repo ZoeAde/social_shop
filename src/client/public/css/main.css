@@ -1,8 +1,227 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.gridListdemoBasicUsage {
+    width: 100%; }
+.gridListdemoBasicUsage md-grid-list {
+  margin: 8px; }
+
+.gridListdemoBasicUsage .one{
+/*  background-image: url('images/img1.png');
+  background-position: bottom right;*/
+  background-color: rgba(232,44,12,.82);
+  background-size: cover;
+}
+.gridListdemoBasicUsage .two {
+  background-image: url('images/img2.png');
+  background-position: right;
+  background-size: cover;
+}
+.gridListdemoBasicUsage .three {
+  background-image: url('images/img3.png');
+  background-position: right;
+  background-size: cover;
 }
 
-a {
-  color: #00B7FF;
+.gridListdemoBasicUsage .four {
+  background-image: url('images/img4.png');
+  background-position: right;
+  background-size: cover;
 }
+.gridListdemoBasicUsage .five {
+  background-image: url('images/img5.png');
+  background-position: right;
+  background-size: cover;
+}
+.gridListdemoBasicUsage .six {
+  background-image: url('images/img6.png');
+  background-position: center;
+  background-size: cover; }
+.gridListdemoBasicUsage .seven{
+  background-image: url('images/img7.png');
+  background-position: bottom right;
+  background-size: cover;
+}
+.gridListdemoBasicUsage .eight {
+  background-image: url('images/img8.png');
+  background-position: right;
+  background-size: cover;
+}
+.gridListdemoBasicUsage .nine {
+  background-image: url('images/img9.png');
+  background-position: right;
+  background-size: cover;
+}
+
+.gridListdemoBasicUsage .ten {
+  background-image: url('images/img10.png');
+  background-position: right;
+  background-size: cover;
+}
+.gridListdemoBasicUsage .eleven {
+  background-image: url('images/img11.png');
+  background-position: right;
+  background-size: cover;
+}
+.gridListdemoBasicUsage .twelve {
+  background-image: url('images/img12.png');
+  background-position: center;
+  background-size: cover; }
+
+.gridListdemoBasicUsage .thirteen{
+  background-image: url('images/img12.png');
+  background-position: bottom right;
+  background-size: cover;
+}
+.gridListdemoBasicUsage .fourteen {
+  background-image: url('images/img14.png');
+  background-position: right;
+  background-size: cover;
+}
+.gridListdemoBasicUsage .fifteen {
+  background-image: url('images/img15.png');
+  background-position: right;
+  background-size: cover;
+}
+
+.gridListdemoBasicUsage .sixteen {
+  background-image: url('images/img16.png');
+  background-position: right;
+  background-size: cover;
+}
+.gridListdemoBasicUsage .seventeen {
+  background-image: url('images/img17.png');
+  background-position: right;
+  background-size: cover;
+}
+.gridListdemoBasicUsage .eighteen {
+  background-image: url('images/img18.png');
+  background-position: center;
+  background-size: cover; }
+.gridListdemoBasicUsage .nineteen{
+  background-image: url('images/img19.png');
+  background-position: bottom right;
+  background-size: cover;
+}
+.gridListdemoBasicUsage .twenty {
+  background-image: url('images/img20.png');
+  background-position: right;
+  background-size: cover;
+}
+.gridListdemoBasicUsage .twentyone {
+  background-image: url('images/img21.png');
+  background-position: right;
+  background-size: cover;
+}
+
+.gridListdemoBasicUsage .twentytwo {
+  background-image: url('images/img22.png');
+  background-position: right;
+  background-size: cover;
+}
+.gridListdemoBasicUsage .twentythree {
+  background-image: url('images/img23.png');
+  background-position: right;
+  background-size: cover;
+}
+.gridListdemoBasicUsage .twentyfour {
+  background-image: url('images/img24.png');
+  background-position: center;
+  background-size: cover; }
+
+
+
+
+
+.gridListdemoBasicUsage md-grid-tile {
+  transition: all 400ms ease-out 50ms; }
+
+.bottomSheetdemoBasicUsage .md-inline-list-icon-label {
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: -10px;
+  height: 24px;
+  vertical-align: middle; }
+.bottomSheetdemoBasicUsage .md-grid-item-content {
+  height: 96px; }
+.bottomSheetdemoBasicUsage .md-grid-item-content md-icon {
+  height: 48px;
+  width: 48px; }
+.bottomSheetdemoBasicUsage .md-grid-text {
+  padding-bottom: 5px; }
+.bottomSheetdemoBasicUsage md-list-item, .bottomSheetdemoBasicUsage md-list-item .md-list-item-inner {
+  min-height: 48px; }
+.bottomSheetdemoBasicUsage h2 {
+  line-height: 36px;
+  padding-top: 10px; }
+.bottomSheetdemoBasicUsage .md-subheader .md-subheader-inner {
+  padding: 0px; }
+.bottomSheetdemoBasicUsage md-toast {
+  background-color: #B14141; }
+.bottomSheetdemoBasicUsage md-toast > * {
+  font-weight: bolder; }
+
+.fab-button {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+.md-button.md-fab md-icon {
+  color: black;
+}
+
+.md-button.md-fab md-icon:hover {
+  color: rgb(63,81,181);
+}
+
+.gridListdemoDynamicTiles md-icon {
+  width: 50%;
+  height: 50%; }
+.gridListdemoDynamicTiles md-icon svg {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%; }
+.gridListdemoDynamicTiles .s64 {
+  font-size: 4px; }
+.gridListdemoDynamicTiles .s32 {
+  font-size: 120px; }
+.gridListdemoDynamicTiles md-icon.fa {
+  display: block;
+  padding-left: 0; }
+.gridListdemoDynamicTiles md-icon.s32 span {
+  padding-left: 8px; }
+.gridListdemoDynamicTiles md-grid-list {
+  margin: 8px; }
+.gridListdemoDynamicTiles .gray {
+  background: #f5f5f5; }
+.gridListdemoDynamicTiles .green {
+  background: #b9f6ca; }
+.gridListdemoDynamicTiles .yellow {
+  background: #ffff8d; }
+.gridListdemoDynamicTiles .blue {
+  background: #84ffff; }
+.gridListdemoDynamicTiles .darkBlue {
+  background: #80d8ff; }
+.gridListdemoDynamicTiles .deepBlue {
+  background: #448aff; }
+.gridListdemoDynamicTiles .purple {
+  background: #b388ff; }
+.gridListdemoDynamicTiles .lightPurple {
+  background: #8c9eff; }
+.gridListdemoDynamicTiles .red {
+  background: #ff8a80; }
+.gridListdemoDynamicTiles .pink {
+  background: #ff80ab; }
+.gridListdemoDynamicTiles md-grid-tile {
+  transition: all 300ms ease-out 50ms; }
+.gridListdemoDynamicTiles md-grid-tile md-icon {
+  padding-bottom: 32px; }
+.gridListdemoDynamicTiles md-grid-tile md-grid-tile-footer {
+  background: rgba(0, 0, 0, 0.68);
+  height: 36px; }
+.gridListdemoDynamicTiles md-grid-tile-footer figcaption {
+  width: 100%; }
+.gridListdemoDynamicTiles md-grid-tile-footer figcaption h3 {
+  margin: 0;
+  font-weight: 700;
+  width: 100%;
+  text-align: center; }
