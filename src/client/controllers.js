@@ -1,198 +1,178 @@
-myApp.controller('mainController', function($scope, $http) {
+app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog', function($scope, $mdBottomSheet, $mdSidenav, $mdDialog){
 
-    $scope.formData = {};
-    $scope.todoData = {};
+  // Toolbar search toggle
+  $scope.toggleSearch = function(element) {
+    $scope.showSearch = !$scope.showSearch;
+  };
 
-    // Get all todos
-    $http.get('/api/v1/todos')
-        .success(function(data) {
-            $scope.todoData = data;
-            console.log(data);
-        })
-        .error(function(error) {
-            console.log('Error: ' + error);
-        });
+  // Sidenav toggle
+  $scope.toggleSidenav = function(menuId) {
+    $mdSidenav(menuId).toggle();
+  };
 
-// Create a new todo
-$scope.createTodo = function(todoID) {
-    $http.post('/api/v1/todos', $scope.formData)
-        .success(function(data) {
-            $scope.formData = {};
-            $scope.todoData = data;
-            console.log(data);
-        })
-        .error(function(error) {
-            console.log('Error: ' + error);
-        });
-};
-
-$scope.deleteTodo = function(todoID) {
-    $http.delete('/api/v1/todos/' + todoID)
-        .success(function(data) {
-            $scope.todoData = data;
-            console.log(data);
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
-};
-});
-
-myApp.controller('DemoCtrl', function () {
-    this.topDirections = ['left', 'up'];
-    this.bottomDirections = ['down', 'right'];
-    this.isOpen = false;
-    this.availableModes = ['md-fling', 'md-scale'];
-    this.selectedMode = 'md-fling';
-    this.availableDirections = ['up', 'down', 'left', 'right'];
-    this.selectedDirection = 'up';
-});
-
-myApp.controller('feedCtrl', function ($scope, $timeout, $mdUtil, $mdSidenav, $log, $mdDialog, $mdToast, $document) {
-    console.log('feedCtrl');
-
-    // *** Sidenav *** //
-
-    $scope.toggleLeft = buildToggler('left');
-    /**
-     * Build handler to open/close a SideNav; when animation finishes
-     * report completion in console
-     */
-    function buildToggler(navID) {
-      var debounceFn =  $mdUtil.debounce(function(){
-            $mdSidenav(navID)
-              .toggle()
-              .then(function () {
-                $log.debug("toggle " + navID + " is done");
-              });
-          },200);
-      return debounceFn;
+  // Menu items
+  $scope.menu = [
+    {
+      link : '',
+      title: 'Dashboard',
+      icon: 'action:ic_dashboard_24px' // we have to use Google's naming convention for the IDs of the SVGs in the spritesheet
+    },
+    {
+      link : '',
+      title: 'Friends',
+      icon: 'social:ic_group_24px'
+    },
+    {
+      link : '',
+      title: 'Messages',
+      icon: 'communication:ic_message_24px'
     }
+  ];
+  $scope.admin = [
+    {
+      link : '',
+      title: 'Trash',
+      icon: 'action:ic_delete_24px'
+    },
+    {
+      link : 'showListBottomSheet($event)',
+      title: 'Settings',
+      icon: 'action:ic_settings_24px'
+    }
+  ];
 
-    $scope.close = function () {
-      $mdSidenav('left').close()
-        .then(function () {
-          $log.debug("close LEFT is done");
-        });
-    };
+  // Mock activity
+  $scope.activity = [
+      {
+        what: 'Brunch this weekend?',
+        who: 'Ali Conners',
+        avatar: 'svg-1',
+        when: '3:08PM',
+        notes: " I'll be in your neighborhood doing errands"
+      },
+      {
+        what: 'Summer BBQ',
+        who: 'to Alex, Scott, Jennifer',
+        avatar: 'svg-2',
+        when: '3:08PM',
+        notes: "Wish I could come out but I'm out of town this weekend"
+      },
+      {
+        what: 'Oui Oui',
+        who: 'Sandra Adams',
+        avatar: 'svg-3',
+        when: '3:08PM',
+        notes: "Do you have Paris recommendations? Have you ever been?"
+      },
+      {
+        what: 'Birthday Gift',
+        who: 'Trevor Hansen',
+        avatar: 'svg-4',
+        when: '3:08PM',
+        notes: "Have any ideas of what we should get Heidi for her birthday?"
+      },
+      {
+        what: 'Recipe to try',
+        who: 'Brian Holt',
+        avatar: 'svg-5',
+        when: '3:08PM',
+        notes: "We should eat this: Grapefruit, Squash, Corn, and Tomatillo tacos"
+      },
+    ];
 
-    // *** List *** //
+  // Bottomsheet & Modal Dialogs
+  $scope.alert = '';
+  $scope.showListBottomSheet = function($event) {
+    $scope.alert = '';
+    $mdBottomSheet.show({
+      template: '<md-bottom-sheet class="md-list md-has-header"><md-list><md-list-item class="md-2-line" ng-repeat="item in items" role="link" md-ink-ripple><md-icon md-svg-icon="{{item.icon}}" aria-label="{{item.name}}"></md-icon><div class="md-list-item-text"><h3>{{item.name}}</h3></div></md-list-item> </md-list></md-bottom-sheet>',
+      controller: 'ListBottomSheetCtrl',
+      targetEvent: $event
+    }).then(function(clickedItem) {
+      $scope.alert = clickedItem.name + ' clicked!';
+    });
+  };
 
-    // var imagePath = 'images/profile_image.jpeg';
+  $scope.showAdd = function(ev) {
+    $mdDialog.show({
+      controller: DialogController,
+      template: '<md-dialog aria-label="Form"> <md-content class="md-padding"> <form name="userForm"> <div layout layout-sm="column"> <md-input-container flex> <label>First Name</label> <input ng-model="user.firstName"> </md-input-container> <md-input-container flex> <label>Last Name</label> <input ng-model="user.lastName"> </md-input-container> </div> <md-input-container flex> <label>Message</label> <textarea ng-model="user.biography" columns="1" md-maxlength="150"></textarea> </md-input-container> </form> </md-content> <div class="md-actions" layout="row"> <span flex></span> <md-button ng-click="answer(\'not useful\')"> Cancel </md-button> <md-button ng-click="answer(\'useful\')" class="md-primary"> Save </md-button> </div></md-dialog>',
+      targetEvent: ev,
+    })
+    .then(function(answer) {
+      $scope.alert = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.alert = 'You cancelled the dialog.';
+    });
+  };
+}]);
 
-    // $scope.phones = [
-    //   { type: 'Home', number: '(555) 251-1234' },
-    //   { type: 'Cell', number: '(555) 786-9841' },
-    // ];
+app.controller('ListBottomSheetCtrl', function($scope, $mdBottomSheet) {
+  $scope.items = [
+    { name: 'Share', icon: 'social:ic_share_24px' },
+    { name: 'Upload', icon: 'file:ic_cloud_upload_24px' },
+    { name: 'Copy', icon: 'content:ic_content_copy_24px' },
+    { name: 'Print this page', icon: 'action:ic_print_24px' },
+  ];
 
-    // $scope.todos = [
-    //   {
-    //     face : imagePath,
-    //     what: 'Brunch this weekend?',
-    //     who: 'Min Li Chan',
-    //     when: '3:08PM',
-    //     notes: " I'll be in your neighborhood doing errands"
-    //   },
-    //   {
-    //     face : imagePath,
-    //     what: 'Brunch this weekend?',
-    //     who: 'Min Li Chan',
-    //     when: '3:08PM',
-    //     notes: " I'll be in your neighborhood doing errands"
-    //   },
-    //   {
-    //     face : imagePath,
-    //     what: 'Brunch this weekend?',
-    //     who: 'Min Li Chan',
-    //     when: '3:08PM',
-    //     notes: " I'll be in your neighborhood doing errands"
-    //   },
-    //   {
-    //     face : imagePath,
-    //     what: 'Brunch this weekend?',
-    //     who: 'Min Li Chan',
-    //     when: '3:08PM',
-    //     notes: " I'll be in your neighborhood doing errands"
-    //   },
-    //   {
-    //     face : imagePath,
-    //     what: 'Brunch this weekend?',
-    //     who: 'Min Li Chan',
-    //     when: '3:08PM',
-    //     notes: " I'll be in your neighborhood doing errands"
-    //   },
-    // ];
+  $scope.listItemClick = function($index) {
+    var clickedItem = $scope.items[$index];
+    $mdBottomSheet.hide(clickedItem);
+  };
+});
 
-    // *** Grid *** //
+function DialogController($scope, $mdDialog) {
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
+};
 
-    // *** User Menu *** //
-    var originatorEv;
-
-    $scope.openMenu = function($mdOpenMenu, ev) {
-      originatorEv = ev;
-      $mdOpenMenu(ev);
-    };
-
-    // $scope.announceClick = function(index) {
-    //   $mdDialog.show(
-    //     $mdDialog.alert()
-    //       .title('You clicked!')
-    //       .content('You clicked the menu item at index ' + index)
-    //       .ok('Nice')
-    //       .targetEvent(originatorEv)
-    //   );
-    //   originatorEv = null;
-    // };
-
-    // *** Toast *** //
-    // var last = {
-    //     bottom: false,
-    //     top: true,
-    //     left: false,
-    //     right: true
-    //   };
-    // $scope.toastPosition = angular.extend({},last);
-    // $scope.getToastPosition = function() {
-    //   sanitizePosition();
-    //   return Object.keys($scope.toastPosition)
-    //     .filter(function(pos) { return $scope.toastPosition[pos]; })
-    //     .join(' ');
-    // };
-    // function sanitizePosition() {
-    //   var current = $scope.toastPosition;
-    //   if ( current.bottom && last.top ) current.top = false;
-    //   if ( current.top && last.bottom ) current.bottom = false;
-    //   if ( current.right && last.left ) current.left = false;
-    //   if ( current.left && last.right ) current.right = false;
-    //   last = angular.extend({},current);
-    // }
-    // $scope.showCustomToast = function() {
-    //   $mdToast.show({
-    //     controller: 'ToastCtrl',
-    //     templateUrl: 'views/toast-template.html',
-    //     parent : $document[0].querySelector('#toastBounds'),
-    //     hideDelay: 6000,
-    //     position: $scope.getToastPosition()
-    //   });
-    // };
-    // $scope.showSimpleToast = function() {
-    //   $mdToast.show(
-    //     $mdToast.simple()
-    //       .content('Simple Toast!')
-    //       .position($scope.getToastPosition())
-    //       .hideDelay(3000)
-    //   );
-    // };
-    // $scope.showActionToast = function() {
-    //   var toast = $mdToast.simple()
-    //         .content('Action Toast!')
-    //         .action('OK')
-    //         .highlightAction(false)
-    //         .position($scope.getToastPosition());
-    //   $mdToast.show(toast).then(function(response) {
-    //     if ( response == 'ok' ) {
-    //       alert('You clicked \'OK\'.');
-    //     }
-    //   });
-    // };
-})
+app.controller('DemoCtrl', DemoCtrl);
+  function DemoCtrl ($timeout, $q) {
+    var self = this;
+    // list of `state` value/display objects
+    self.states        = loadAll();
+    self.selectedItem  = null;
+    self.searchText    = null;
+    self.querySearch   = querySearch;
+    // ******************************
+    // Internal methods
+    // ******************************
+    /**
+     * Search for states... use $timeout to simulate
+     * remote dataservice call.
+     */
+    function querySearch (query) {
+      var results = query ? self.states.filter( createFilterFor(query) ) : [];
+      return results;
+    }
+    /**
+     * Build `states` list of key/value pairs
+     */
+    function loadAll() {
+      var allStates = 'Ali Conners, Alex, Scott, Jennifer, \
+              Sandra Adams, Brian Holt, \
+              Trevor Hansen';
+      return allStates.split(/, +/g).map( function (state) {
+        return {
+          value: state.toLowerCase(),
+          display: state
+        };
+      });
+    }
+    /**
+     * Create filter function for a query string
+     */
+    function createFilterFor(query) {
+      var lowercaseQuery = angular.lowercase(query);
+      return function filterFn(state) {
+        return (state.value.indexOf(lowercaseQuery) === 0);
+      };
+    }
+  };

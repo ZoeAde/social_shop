@@ -1,62 +1,76 @@
-<!-- START TOP NAV TOOLBAR -->
-<div ng-cloak>
-  <md-content>
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-        <md-button ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="bower_components/material-design-icons/navigation/svg/production/ic_menu_24px.svg"></md-icon>
-        </md-button>
-        <h2>
-          <span>Test App</span>
-        </h2>
+
+    <div layout="column" class="relative" layout-fill role="main">
+      <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
+        <md-icon md-svg-icon="content:ic_add_24px" aria-label="Plus"></md-icon>
+      </md-button>
+      <md-toolbar class="animate-show md-tall md-whiteframe-z1" ng-show="!showSearch">
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button" ng-click="toggleSidenav('left')" aria-label="Menu">
+            <md-icon md-svg-icon="navigation:ic_menu_24px" aria-label="Menu"></md-icon>
+          </md-button>
+          <h3>
+            Dashboard
+          </h3>
+          <span flex></span>
+          <md-button class="md-icon-button" aria-label="Search" ng-click="toggleSearch()">
+            <md-icon md-svg-icon="action:ic_search_24px" aria-label="Search"></md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Open Settings" ng-click="showListBottomSheet($event)">
+            <md-icon md-svg-icon="navigation:ic_more_vert_24px" aria-label="More"></md-icon>
+          </md-button>
+        </div>
         <span flex></span>
-        <md-button class="md-icon-button" aria-label="More">
-          <md-menu md-position-mode="target-right target" >
-            <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-              <md-icon md-svg-icon="bower_components/material-design-icons/social/svg/production/ic_person_24px.svg"></md-icon>
-            </md-button>
-            <md-menu-content width="4" >
-              <md-menu-item>
-                <md-button ng-click="announceClick($index)">
-                    <div layout="row">
-                      <p flex>Profile</p>
-                      <md-icon md-menu-align-target md-svg-icon="bower_components/material-design-icons/social/svg/production/ic_person_24px.svg" style="margin: auto 3px auto 0;"></md-icon>
-                    </div>
-                </md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button ng-click="announceClick($index)">
-                    <div layout="row">
-                      <p flex>Buyer Page</p>
-                    </div>
-                </md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button ng-click="announceClick($index)">
-                    <div layout="row">
-                      <p flex>Seller Page</p>
-                    </div>
-                </md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button ng-click="announceClick($index)">
-                    <div layout="row">
-                      <p flex>Favorites</p>
-                    </div>
-                </md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button ng-click="announceClick($index)">
-                    <div layout="row">
-                      <p flex>Messages</p>
-                    </div>
-                </md-button>
-              </md-menu-item>
-            </md-menu-content>
-          </md-menu>
-        </md-button>
-      </div>
-    </md-toolbar>
-  </md-content>
-</div>
-<!-- END TOP NAV -->
+        <md-tabs md-stretch-tabs="always" md-selected="data.selectedIndex">
+          <md-tab id="tab1" aria-controls="tab1-content">
+            Highest Rated
+          </md-tab>
+          <md-tab id="tab2" aria-controls="tab2-content">
+            Most Recent
+          </md-tab>
+        </md-tabs>
+      </md-toolbar>
+      <md-toolbar ng-show="showSearch" class="animate-show md-hue-1 md-whiteframe-z1">
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button" ng-click="toggleSearch()" aria-label="Menu">
+            <md-icon md-svg-icon="navigation:ic_arrow_back_24px" aria-label="Back"></md-icon>
+          </md-button>
+          <h3 role="button" ng-click="toggleSearch()">
+            Back
+          </h3>
+          <span flex="5"></span>
+          <span ng-controller="DemoCtrl as ctrl" flex>
+            <md-autocomplete md-theme="input"
+              md-input-name="autocompleteField"
+              md-no-cache="ctrl.noCache"
+              md-selected-item="ctrl.selectedItem"
+              md-search-text="ctrl.searchText"
+              md-items="item in ctrl.querySearch(ctrl.searchText)"
+              md-item-text="item.display"
+              placeholder="Search">
+              <md-item-template>
+                <span md-highlight-text="ctrl.searchText">{{item.display}}</span>
+              </md-item-template>
+              <div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
+                <div ng-message="required">You <b>must</b> have a favorite state.</div>
+                <div ng-message="minlength">Your entry is not long enough.</div>
+                <div ng-message="maxlength">Your entry is too long.</div>
+              </div>
+            </md-autocomplete>
+          </span>
+        </div>
+      </md-toolbar>
+      <md-content flex>
+        <ui-view layout="column" layout-fill layout-padding>
+          <div class="inset" hide-sm></div>
+            <ng-switch on="data.selectedIndex" class="tabpanel-container">
+
+            <!-- FEED DIRECTIVE -->
+            <feed-tab></feed-tab>
+
+          </ng-switch>
+        </ui-view>
+
+
+
+      </md-content>
+    </div>
