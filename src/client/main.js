@@ -1,4 +1,4 @@
-var app = angular.module('StarterApp', ['ngRoute', 'ngMaterial']);
+var app = angular.module('StarterApp', ['ngRoute', 'ngMaterial', 'ngMessages']);
 
 
 
@@ -16,8 +16,8 @@ app.config(function($mdThemingProvider) {
     })
     .accentPalette('pink');
   $mdThemingProvider.theme('input', 'default')
-        .primaryPalette('grey')
-});
+        .primaryPalette('grey');
+  });
 
 app.config(function($mdIconProvider) {
     $mdIconProvider
