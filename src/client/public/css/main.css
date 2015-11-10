@@ -38,7 +38,7 @@ md-list-item.md-3-line md-divider[md-inset] {
   border-radius: 50%;
 }
 
-/* fade animation */
+ fade animation
 .animate-show {
   transition: 0.75s ease-out opacity;
   opacity: 1;
@@ -49,3 +49,21 @@ md-list-item.md-3-line md-divider[md-inset] {
   opacity: 0;
   overflow: hidden;
 }
+
+/*TAB TWO FORM FORMAT*/
+.gridListdemoBasicUsage md-grid-list {
+  margin: 8px; }
+.gridListdemoBasicUsage .gray {
+  background: #f5f5f5; }
+.gridListdemoBasicUsage .green {
+  background: #b9f6ca; }
+.gridListdemoBasicUsage .yellow {
+  background: #ffff8d; }
+.gridListdemoBasicUsage .blue {
+  background: #84ffff; }
+.gridListdemoBasicUsage .purple {
+  background: #b388ff; }
+.gridListdemoBasicUsage .red {
+  background: #ff8a80; }
+.gridListdemoBasicUsage md-grid-tile {
+  transition: all 400ms ease-out 50ms; }
