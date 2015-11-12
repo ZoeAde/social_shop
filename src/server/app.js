@@ -8,6 +8,12 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var session = require('express-session');
 
+var pg = require('knex')({
+  client: 'pg',
+  connection: process.env.PG_CONNECTION_STRING,
+  searchPath: 'knex,public'
+});
+
 // *** routes *** //
 var routes = require('./routes/index.js');
 
