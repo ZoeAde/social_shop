@@ -5,14 +5,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var passport = require('passport');
-var session = require('express-session');
+var swig = require('swig');
 
-var pg = require('knex')({
-  client: 'pg',
-  connection: process.env.PG_CONNECTION_STRING,
-  searchPath: 'knex,public'
-});
 
 // *** routes *** //
 var routes = require('./routes/index.js');
@@ -20,6 +14,16 @@ var routes = require('./routes/index.js');
 
 // *** express instance *** //
 var app = express();
+
+
+// *** view engine *** //
+var swig = new swig.Swig();
+app.engine('html', swig.renderFile);
+app.set('view engine', 'html');
+
+
+// *** static directory *** //
+app.set('views', path.join(__dirname, 'views'));
 
 
 // *** config middleware *** //
@@ -49,7 +53,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.send('error', {
+    res.render('error', {
       message: err.message,
       error: err
     });
@@ -60,7 +64,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.send('error', {
+  res.render('error', {
     message: err.message,
     error: {}
   });

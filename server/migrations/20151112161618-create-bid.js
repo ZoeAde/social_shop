@@ -1,0 +1,33 @@
+'use strict';
+module.exports = {
+  up: function(queryInterface, Sequelize) {
+    return queryInterface.createTable('Bids', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      ItemId: {
+        type: Sequelize.STRING
+      },
+      UserId: {
+        type: Sequelize.STRING
+      },
+      bidAmount: {
+        type: Sequelize.NUMBER
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
+    });
+  },
+  down: function(queryInterface, Sequelize) {
+    return queryInterface.dropTable('Bids');
+  }
+};
