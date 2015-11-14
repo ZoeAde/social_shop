@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ItemId: {
-        type: Sequelize.SERIAL
+        type: Sequelize.UUID
       },
       seller: {
         type: Sequelize.STRING
@@ -33,7 +33,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       minimum: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       imgUrl: {
         type: Sequelize.STRING

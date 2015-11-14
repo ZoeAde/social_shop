@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
     last: DataTypes.STRING,
     email: DataTypes.STRING,
     instagram: DataTypes.STRING,
-    UserId: DataTypes.SERIAL
+    UserId: DataTypes.UUID
   }, {
     classMethods: {
       associate: function(models) {
