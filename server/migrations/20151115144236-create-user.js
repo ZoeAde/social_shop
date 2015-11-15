@@ -8,20 +8,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      first: {
-        type: Sequelize.STRING
-      },
-      last: {
+      name: {
         type: Sequelize.STRING
       },
       email: {
         type: Sequelize.STRING
       },
-      instagram: {
+      username: {
         type: Sequelize.STRING
       },
-      UserId: {
-        type: Sequelize.UUID
+      code: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

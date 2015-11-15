@@ -1,12 +1,11 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Item = sequelize.define('Item', {
-    ItemId: DataTypes.UUID,
     seller: DataTypes.STRING,
     buyer: DataTypes.STRING,
     size: DataTypes.STRING,
     category: DataTypes.STRING,
-    description: DataTypes.STRING,
+    summary: DataTypes.STRING,
     condition: DataTypes.STRING,
     status: DataTypes.STRING,
     minimum: DataTypes.INTEGER,

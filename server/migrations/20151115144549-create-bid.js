@@ -8,10 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ItemId: {
+      itemId: {
         type: Sequelize.STRING
       },
-      UserId: {
+      userId: {
         type: Sequelize.STRING
       },
       bidAmount: {

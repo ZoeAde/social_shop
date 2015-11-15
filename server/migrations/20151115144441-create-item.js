@@ -8,9 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ItemId: {
-        type: Sequelize.UUID
-      },
       seller: {
         type: Sequelize.STRING
       },
@@ -23,7 +20,7 @@ module.exports = {
       category: {
         type: Sequelize.STRING
       },
-      description: {
+      summary: {
         type: Sequelize.STRING
       },
       condition: {

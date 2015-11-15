@@ -1,42 +1,27 @@
 var passport = require('passport');
 var InstagramStrategy = require('passport-instagram').Strategy;
 
-var User = require('../models/user');
+var models = require('../models/index');
 var config = require('../../_config');
 var init = require('./init');
 
 passport.use(new InstagramStrategy({
     clientID: config.instagram.clientID,
     clientSecret: config.instagram.clientSecret,
-    callbackURL: config.instagram.callbackURL
+    callbackURL: config.instagram.callbackURL,
+    passReqToCallback: true
   },
 
-  function(token, tokenSecret, profile, done) {
 
-    var searchQuery = {
-      name: profile.displayName
-    };
-
-    var updates = {
-      name: profile.displayName,
-      someID: profile.id
-    };
-
-    var options = {
-      upsert: true
-    };
-
-    // update the user if s/he exists or add a new user
-    User.findOneAndUpdate(searchQuery, updates, options, function(err, user) {
-      if(err) {
-        return done(err);
-      } else {
-        return done(null, user);
-      }
-    });
-  }
-
-));
+//CHECK HOW TO CALL BACK USERNAME IN PARAMS
+ function(request, accessToken, refreshToken, profile, done) {
+  console.log('test:', request.query.code);
+  models.User.create({
+    code: request.query.code
+  }).then(function(user) {
+    return done(null, user);
+  });
+}));
 
 // serialize user into the session
 init();

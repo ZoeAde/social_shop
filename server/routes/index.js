@@ -12,7 +12,8 @@ router.get('/login', function(req, res, next) {
   res.send('Go back and register!');
 });
 
-router.get('/auth/instagram', passportInstagram.authenticate('instagram', { scope: [ 'user:email' ] }));
+router.get('/auth/instagram', passportInstagram.authenticate('instagram', { scope: ['basic', 'comments', 'relationships', 'likes'],
+    failureRedirect: '/' }));
 
 router.get('/auth/instagram/callback',
   passportInstagram.authenticate('instagram', { failureRedirect: '/login' }),
@@ -24,16 +25,16 @@ router.get('/auth/instagram/callback',
 /////////////////USERS///////////////////
 router.post('/users', function(req, res) {
   models.User.create({
-    first: req.body.first,
-    last: req.body.last,
+    name: req.body.name,
     email: req.body.email,
-    instagram: req.body.instagram
+    username: req.body.username,
+    code:req.body.code
   }).then(function(user) {
     res.json(user);
   });
 });
 
-// get all items
+// get all users
 router.get('/users', function(req, res) {
   models.User.findAll({}).then(function(users) {
     res.json(users);
@@ -44,7 +45,7 @@ router.get('/users', function(req, res) {
 router.get('/user/:id', function(req, res) {
   models.User.find({
     where: {
-      instagram: req.params.instagram
+      id: req.params.id
     }
   }).then(function(user) {
     res.json(user);
@@ -60,16 +61,10 @@ router.put('/user/:id', function(req, res) {
   }).then(function(user) {
     if(user){
       user.updateAttributes({
-        seller: req.body.seller,
-        buyer: req.body.buyer,
-        size: req.body.size,
-        category: req.body.category,
-        description: req.body.description,
-        condition: req.body.condition,
-        status: req.body.status,
-        minimum: req.body.minimum,
-        imgUrl: req.body.imgUrl,
-        complete: req.body.complete
+        name: req.body.name,
+        email: req.body.email,
+        username: req.body.username,
+        code:req.body.code
       }).then(function(user) {
         res.send(user);
       });
@@ -93,7 +88,6 @@ router.delete('/user/:id', function(req, res) {
 //post new item
 router.post('/items', function(req, res) {
   models.Item.create({
-    ItemId: req.body.itemId,
     seller: req.body.seller,
     buyer: req.body.buyer,
     size: req.body.size,

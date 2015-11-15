@@ -1,8 +1,8 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Bid = sequelize.define('Bid', {
-    ItemId: DataTypes.STRING,
-    UserId: DataTypes.STRING,
+    itemId: DataTypes.STRING,
+    userId: DataTypes.STRING,
     bidAmount: DataTypes.INTEGER
   }, {
     classMethods: {

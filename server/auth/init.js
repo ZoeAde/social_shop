@@ -1,17 +1,20 @@
 var passport = require('passport');
-var User = require('../models/user');
+var models = require('../models/index');
 
 
 module.exports = function() {
 
-  passport.serializeUser(function(user, done) {
-    done(null, user.id);
+// serialize and deserialize user (passport)
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+passport.deserializeUser(function(id, done) {
+  console.log(models.User);
+  models.User.findOne({
+    where: {id:models.User.id}
+  }).then(function(user) {
+    return done(null, user);
   });
-
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function (err, user) {
-      done(err, user);
-    });
-  });
+});
 
 };
