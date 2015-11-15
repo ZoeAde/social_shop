@@ -1,13 +1,27 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models/index');
-
+var passportInstagram = require('../auth/instagram');
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-///////////////////USERS///////////////////////
+//////////////AUTH/////////////////
+router.get('/login', function(req, res, next) {
+  res.send('Go back and register!');
+});
+
+router.get('/auth/instagram', passportInstagram.authenticate('instagram', { scope: [ 'user:email' ] }));
+
+router.get('/auth/instagram/callback',
+  passportInstagram.authenticate('instagram', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication
+    res.json(req.user);
+  });
+
+/////////////////USERS///////////////////
 router.post('/users', function(req, res) {
   models.User.create({
     first: req.body.first,
@@ -166,7 +180,7 @@ router.delete('/item/:id', function(req, res) {
   });
 });
 
-///////////////////////BID/////////////////////
+////////////////////BID///////////////////
 
 
 module.exports = router;
