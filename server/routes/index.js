@@ -7,14 +7,90 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+///////////////////USERS///////////////////////
 router.post('/users', function(req, res) {
   models.User.create({
     first: req.body.first,
     last: req.body.last,
     email: req.body.email,
-    instagram: req.body.instagram,
+    instagram: req.body.instagram
   }).then(function(user) {
     res.json(user);
+  });
+});
+
+// get all items
+router.get('/users', function(req, res) {
+  models.User.findAll({}).then(function(users) {
+    res.json(users);
+  });
+});
+
+// get single user
+router.get('/user/:id', function(req, res) {
+  models.User.find({
+    where: {
+      instagram: req.params.instagram
+    }
+  }).then(function(user) {
+    res.json(user);
+  });
+});
+
+// update single user
+router.put('/user/:id', function(req, res) {
+  models.User.find({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(user) {
+    if(user){
+      user.updateAttributes({
+        seller: req.body.seller,
+        buyer: req.body.buyer,
+        size: req.body.size,
+        category: req.body.category,
+        description: req.body.description,
+        condition: req.body.condition,
+        status: req.body.status,
+        minimum: req.body.minimum,
+        imgUrl: req.body.imgUrl,
+        complete: req.body.complete
+      }).then(function(user) {
+        res.send(user);
+      });
+    }
+  });
+});
+
+// delete a single user
+router.delete('/user/:id', function(req, res) {
+  models.User.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(user) {
+    res.json(user);
+  });
+});
+
+
+//////////////////ITEMS/////////////////////////
+//post new item
+router.post('/items', function(req, res) {
+  models.Item.create({
+    ItemId: req.body.itemId,
+    seller: req.body.seller,
+    buyer: req.body.buyer,
+    size: req.body.size,
+    category: req.body.category,
+    description: req.body.description,
+    condition: req.body.condition,
+    status: req.body.status,
+    minimum: req.body.minimum,
+    imgUrl: req.body.imgUrl
+  }).then(function(item) {
+    res.json(item);
   });
 });
 
@@ -89,5 +165,8 @@ router.delete('/item/:id', function(req, res) {
     res.json(item);
   });
 });
+
+///////////////////////BID/////////////////////
+
 
 module.exports = router;
