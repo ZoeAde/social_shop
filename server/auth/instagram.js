@@ -15,13 +15,12 @@ passport.use(new InstagramStrategy({
 
 //recieve code from instagram auth and save data to db
  function(request, accessToken, refreshToken, profile, done) {
-  console.log(profile._json.data.counts.media);
   models.User.create({
     token: accessToken,
-    name: profile.displayName,
-    username: profile.full_name,
-    bio: profile.bio,
-    profile_picture: profile.profile_picture,
+    name: profile._json.data.full_name,
+    username: profile._json.data.username,
+    bio: profile._json.data.bio,
+    profile_picture: profile._json.data.profile_picture,
     instagram_id: profile.id,
     media: profile._json.data.counts.media,
     followed_by: profile._json.data.counts.followed_by,
