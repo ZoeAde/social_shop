@@ -17,7 +17,31 @@ module.exports = {
       username: {
         type: Sequelize.STRING
       },
-      code: {
+      token: {
+        type: Sequelize.STRING
+      },
+      profile_picture: {
+        type: Sequelize.STRING
+      },
+      full_name: {
+        type: Sequelize.STRING
+      },
+      instagram_id: {
+        type: Sequelize.STRING
+      },
+      media: {
+        type: Sequelize.INTEGER
+      },
+      followed_by: {
+        type: Sequelize.INTEGER
+      },
+      follows: {
+        type: Sequelize.INTEGER
+      },
+      bio: {
+        type: Sequelize.STRING
+      },
+      phone: {
         type: Sequelize.STRING
       },
       createdAt: {

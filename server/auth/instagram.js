@@ -13,18 +13,19 @@ passport.use(new InstagramStrategy({
   },
 
 
-//recieve code from instagram auth
+//recieve code from instagram auth and save data to db
  function(request, accessToken, refreshToken, profile, done) {
+  console.log(profile._json.data.counts.media);
   models.User.create({
     token: accessToken,
     name: profile.displayName,
     username: profile.full_name,
     bio: profile.bio,
     profile_picture: profile.profile_picture,
-    id: profile.id,
-    media: profile.counts.media,
-    followed_by: profile.counts.followed_by,
-    follows: profile.counts.follows
+    instagram_id: profile.id,
+    media: profile._json.data.counts.media,
+    followed_by: profile._json.data.counts.followed_by,
+    follows: profile._json.data.counts.follows
   }).then(function(user) {
     return done(null, user);
   });

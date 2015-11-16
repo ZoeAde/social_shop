@@ -4,16 +4,15 @@ module.exports = function(sequelize, DataTypes) {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     username: DataTypes.STRING,
-    code: DataTypes.STRING
-    //profile_picture:DataTypes.STRING
-    //full_name:DataTypes.STRING
-    //id:DataTypes.STRING
-    //media:DataTypes.INTEGER
-    //followed_by:DataTypes.INTEGER
-    //follows:DataTypes.INTEGER
-    //bio:DataTypes.STRING
-    //token: DataTypes.STRING
-    //phone: DataTypes.STRING
+    token: DataTypes.STRING,
+    profile_picture: DataTypes.STRING,
+    full_name: DataTypes.STRING,
+    instagram_id: DataTypes.STRING,
+    media: DataTypes.INTEGER,
+    followed_by: DataTypes.INTEGER,
+    follows: DataTypes.INTEGER,
+    bio: DataTypes.STRING,
+    phone: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
