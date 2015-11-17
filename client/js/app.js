@@ -1,3 +1,7 @@
+$(document).ready(function(){
+  $('ul.tabs').tabs();
+});
+
 var app = angular.module('myApp', ['ngRoute', 'angularMoment', 'ngMessages', 'duScroll', 'satellizer']);
 
 //creating different title name on each page in browser tab
@@ -25,12 +29,12 @@ $routeProvider
     .when('/profile', {
       title: 'My Profile',
       templateUrl: 'views/profile.html',
-      controller: 'profileController'
+      controller: 'mainController'
     })
     .when('/jeet', {
       title: 'jeet test',
       templateUrl: 'views/jeet.html',
-      controller: 'profileController'
+      controller: 'mainController'
     })
     // .when('/login', {
     //   title: 'Login',
