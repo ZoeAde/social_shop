@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute', 'angularMoment', 'duScroll', 'satellizer']);
+var app = angular.module('myApp', ['ngRoute', 'angularMoment', 'ngMessages', 'duScroll', 'satellizer']);
 
 //creating different title name on each page in browser tab
 app.run(['$rootScope', function($rootScope) {

@@ -1,5 +1,3 @@
-
-
 app.factory('myFactory', ['$http', function($http){
 
   var obj = {};

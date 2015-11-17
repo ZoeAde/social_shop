@@ -6,9 +6,14 @@ app.config(function($routeProvider, $locationProvider, $authProvider){
       controller: 'mainController'
     })
     .when('/profile', {
-      title: 'User Profile',
+      title: 'My Profile',
       templateUrl: 'views/profile.html',
       controller: 'profileController'
+    })
+    .when('/login', {
+      title: 'Login',
+      templateUrl: 'views/login.html',
+      controller: 'loginController'
     })
     .otherwise({
       redirectTo: '/'

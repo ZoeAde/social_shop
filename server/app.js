@@ -5,9 +5,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var swig = require('swig');
-var passport = require('passport');
 var session = require('express-session');
+var request = require('request');
+var bcrypt = require('bcryptjs');
+var jwt = require('jwt-simple');
+var moment = require('moment');
+var cors = require('cors');
+var config = require('../_config');
 
 // *** routes *** //
 var routes = require('./routes/index.js');
@@ -15,12 +19,6 @@ var routes = require('./routes/index.js');
 
 // *** express instance *** //
 var app = express();
-
-
-// *** view engine *** //
-var swig = new swig.Swig();
-app.engine('html', swig.renderFile);
-app.set('view engine', 'html');
 
 
 // *** static directory *** //
@@ -39,19 +37,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
-app.use(passport.initialize());
-app.use(passport.session());
 
-
-app.get('/auth/instagram',
-  passport.authenticate('instagram'));
-
-app.get('/auth/instagram/callback',
-  passport.authenticate('instagram', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
 
 // *** main routes *** //
 app.use('/', routes);

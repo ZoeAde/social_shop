@@ -2,14 +2,22 @@ app.controller('mainController', function($scope, myFactory, $http, $location, $
 
   $anchorScroll();
 
-  // $scope.isAuthenticated = function() {
-  //   return $auth.isAuthenticated();
-  // };
+  $scope.isAuthenticated = function() {
+    return $auth.isAuthenticated();
+  };
 
-  // $scope.logout = function() {
-  //   $auth.logout();
-  //   delete $window.localStorage.currentUser;
-  // };
+  $scope.logout = function() {
+    $auth.logout();
+    delete $window.localStorage.currentUser;
+  };
+
+  $scope.linkInstagram = function() {
+      $auth.link('instagram')
+        .then(function(response) {
+          $window.localStorage.currentUser = JSON.stringify(response.data.user);
+          $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
+        });
+    };
 
   $scope.toTheTop = function() {
     $document.scrollTopAnimated(0, 1400).then(function() {
@@ -19,28 +27,5 @@ app.controller('mainController', function($scope, myFactory, $http, $location, $
   go = function(marker){
     $location.path(marker);
   };
-
-  //helper functions
-  // getPosts = function(url){
-  //   myFactory.get(url)
-  //     .then(function(res){
-  //       $scope.posts = res.data;
-  //       // console.log($scope.posts)
-  //     });
-  // };
-
-
-
-  // $scope.addBlogPost = function(){
-  //   myFactory.post('/api/posts', $scope.newPost)
-  //     .then(function(data){
-  //       var blog = data.data[0];
-  //       go('/post/' + blog.lastName + '/' + blog.firstName);
-  //     });
-  //     // .then(function(res){
-  //     //   $scope.posts.push(res.data);
-  //     //   console.log($scope.posts);
-  //     // });
-  // };
 
 });
