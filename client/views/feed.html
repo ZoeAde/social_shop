@@ -3,13 +3,14 @@
     <div class="container">
 
       <h1>{{ title }}</h1>
-      <p>Welcome! Please Login.</p>
+      <p>the feed</p>
       <hr><br>
 <!-- <button ng-click="authenticate('instagram')">Sign in with Instagram</button> -->
 
-<div ng-if="!isAuthenticated()">
+<button class="btn btn-block btn-success" ng-click="authenticate('instagram')">Sign in with Instagram</button>
+<!-- <div ng-if="!isAuthenticated()">
   <a href="/login">Login</a>
-</div>
+</div> -->
 <ul ng-if="isAuthenticated()">
   <li><a ng-click="logout()">Logout</a></li>
 </ul>

@@ -11,11 +11,15 @@ var bcrypt = require('bcryptjs');
 var jwt = require('jwt-simple');
 var moment = require('moment');
 var cors = require('cors');
+
+
+// *** config file *** //
 var config = require('../_config');
+
 
 // *** routes *** //
 var routes = require('./routes/index.js');
-
+var authRoutes = require('./routes/auth');
 
 // *** express instance *** //
 var app = express();
@@ -41,6 +45,7 @@ app.use(session({
 
 // *** main routes *** //
 app.use('/', routes);
+app.use('/auth', authRoutes);
 app.all('/*', function(req, res){
   res.sendFile(path.join(__dirname, '../client', 'index.html'));
 });

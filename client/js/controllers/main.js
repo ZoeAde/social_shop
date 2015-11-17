@@ -6,26 +6,33 @@ app.controller('mainController', function($scope, myFactory, $http, $location, $
     return $auth.isAuthenticated();
   };
 
+$scope.authenticate = function(provider) {
+
+    $auth.authenticate(provider)
+      .then(function(response) {
+        $window.localStorage.currentUser = JSON.stringify(response.data.user);
+        $rootScope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        console.log(response);
+        $location.path('/home');
+      })
+    .catch(function(response) {
+      console.log(response);
+    });
+
+  };
+
   $scope.logout = function() {
     $auth.logout();
     delete $window.localStorage.currentUser;
   };
 
-  $scope.linkInstagram = function() {
-      $auth.link('instagram')
-        .then(function(response) {
-          $window.localStorage.currentUser = JSON.stringify(response.data.user);
-          $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
-        });
-    };
+  // $scope.toTheTop = function() {
+  //   $document.scrollTopAnimated(0, 1400).then(function() {
+  //   });
+  // };
 
-  $scope.toTheTop = function() {
-    $document.scrollTopAnimated(0, 1400).then(function() {
-    });
-  };
-
-  go = function(marker){
-    $location.path(marker);
-  };
+  // go = function(marker){
+  //   $location.path(marker);
+  // };
 
 });
