@@ -1,7 +1,3 @@
-$(document).ready(function(){
-  $('ul.tabs').tabs();
-});
-
 var app = angular.module('myApp', ['ngRoute', 'angularMoment', 'ngMessages', 'duScroll', 'satellizer']);
 
 //creating different title name on each page in browser tab
