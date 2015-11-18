@@ -27,43 +27,43 @@ module.exports = router;
 //   });
 // });
 
-// // get all users
+// get all users
 // router.get('/users', function(req, res) {
 //   models.User.findAll({}).then(function(users) {
 //     res.json(users);
 //   });
 // });
 
-// // get single user
-// router.get('/user/:id', function(req, res) {
-//   models.User.find({
-//     where: {
-//       id: req.params.id
-//     }
-//   }).then(function(user) {
-//     res.json(user);
-//   });
-// });
+// get single user
+router.get('/api/user/:token', function(req, res) {
+  models.User.find({
+    where: {
+      token: req.params.token
+    }
+  }).then(function(user) {
+    res.json(user);
+  });
+});
 
-// // update single user
-// router.put('/user/:id', function(req, res) {
-//   models.User.find({
-//     where: {
-//       id: req.params.id
-//     }
-//   }).then(function(user) {
-//     if(user){
-//       user.updateAttributes({
-//         name: req.body.name,
-//         email: req.body.email,
-//         username: req.body.username,
-//         code:req.body.code
-//       }).then(function(user) {
-//         res.send(user);
-//       });
-//     }
-//   });
-// });
+// update single user
+router.put('/user/:id', function(req, res) {
+  models.User.find({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(user) {
+    if(user){
+      user.updateAttributes({
+        name: req.body.name,
+        email: req.body.email,
+        username: req.body.username,
+        code:req.body.code
+      }).then(function(user) {
+        res.send(user);
+      });
+    }
+  });
+});
 
 // // delete a single user
 // router.delete('/user/:id', function(req, res) {
@@ -77,7 +77,7 @@ module.exports = router;
 // });
 
 
-// //////////////////ITEMS/////////////////////////
+/////////////////ITEMS////////////////////
 // //post new item
 // router.post('/items', function(req, res) {
 //   models.Item.create({

@@ -24,6 +24,4 @@ app.factory('myFactory', ['$http', function($http){
 
   return obj;
 
-
-
 }]);

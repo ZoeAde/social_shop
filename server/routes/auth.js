@@ -35,7 +35,7 @@ function ensureAuthenticated(req, res, next) {
         where: {
           instagram_id: payload.sub
         }
-    }).then(function(err, user) {
+    }).then(function(user) {
     if (!user) {
       return res.status(400).send({
         message: 'User no longer exists. '
@@ -69,7 +69,7 @@ router.post('/instagram', function(req, res) {
 
   // Step 1. Exchange authorization code for access token.
   request.post({ url: accessTokenUrl, form: params, json: true }, function(error, response, body) {
-    console.log(body);
+    // console.log(body);
     // Step 2a. Link user accounts.
     if (req.headers.authorization) {
 
@@ -77,7 +77,7 @@ router.post('/instagram', function(req, res) {
           where: {
             instagram_id: body.user.id
           }
-        }).then(function(err, existingUser) {
+        }).then(function(existingUser) {
         if (existingUser) {
           return res.status(409).send({ message: 'There is already an Instagram account that belongs to you' });
         }
@@ -88,7 +88,7 @@ router.post('/instagram', function(req, res) {
           where: {
             instagram_id: payload.sub
           }
-        }).then(function(err, user) {
+        }).then(function(user) {
           if (!user) {
             return res.status(400).send({ message: 'User not found' });
           }
@@ -96,6 +96,7 @@ router.post('/instagram', function(req, res) {
           user.email = null;
           user.save(function() {
             var token = createToken(user);
+
             res.send({
               token: token,
               user: user
@@ -105,11 +106,12 @@ router.post('/instagram', function(req, res) {
       });
     } else {
       // Step 2b. Create a new user account or return an existing one.
-        models.User.find({
+      console.log(body.user.id);
+        models.User.findOne({
           where: {
             instagram_id: body.user.id
           }
-        }).then(function(err, existingUser) {
+        }).then(function(existingUser) {
         if (existingUser) {
           return res.send({
             token: createToken(existingUser),
@@ -124,6 +126,7 @@ router.post('/instagram', function(req, res) {
           instagram_id: body.user.id
         }).then(function() {
           var token = createToken(user);
+
           res.send({
             token: token,
             user: user

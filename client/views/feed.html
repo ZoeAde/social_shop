@@ -1,13 +1,13 @@
   <div class="container">
 
     <div class="container">
-
-      <h1>{{ title }}</h1>
-      <p>the feed</p>
-      <hr><br>
+      <h2>Welcome {{ user.name }}!</h2>
+      <p>{{user}}</p>
+      <img src="user.profile_picture">
+      <h6>testing</h6>
 <!-- <button ng-click="authenticate('instagram')">Sign in with Instagram</button> -->
 
-<button class="btn btn-block btn-success" ng-click="authenticate('instagram')">Sign in with Instagram</button>
+<button class="center btn btn-block btn-success" ng-click="authenticate('instagram')">Sign in with Instagram</button>
 <!-- <div ng-if="!isAuthenticated()">
   <a href="/login">Login</a>
 </div> -->
@@ -19,7 +19,7 @@
 
 <div class="container">
 
-  <div ng-if="isAuthenticated() && currentUser.username">
+  <div ng-if="isAuthenticated()">
     <div class="row">
       <div ng-repeat="photo in photos" class="col-lg-2 col-sm-3 col-xs-4">
         <a href="#/photo/{{photo.id}}">
@@ -40,7 +40,7 @@
     </div>
   </div>
  -->
-  <div ng-if="isAuthenticated() && !currentUser.username" class="center-form panel">
+<!--   <div ng-if="isAuthenticated() && !currentUser.username" class="center-form panel">
     <div class="panel-body">
       <h5 class="text-center"><i class="ion-link"></i> Link Account</h5>
       <p>To complete the registration process you must link your Instagram account.</p>
@@ -48,6 +48,6 @@
         <i class="ion-social-instagram"></i> Sign in with Instagram
       </button>
     </div>
-  </div>
+  </div> -->
 
 </div>
