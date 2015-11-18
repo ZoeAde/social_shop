@@ -1,45 +1,48 @@
-  <div class="container">
+  <div class="container center">
 
     <div class="container">
-      <h2>Welcome {{ user.name }}!</h2>
-      <p>{{user}}</p>
-      <img src="user.profile_picture">
-      <h6>testing</h6>
-<!-- <button ng-click="authenticate('instagram')">Sign in with Instagram</button> -->
+      <div ng-if="isAuthenticated()" class="center">
+        <h1>{{ user.name }}</h1>
+        <br>
+        <img src={{user.profile_picture}}>
+        <br><br><br>
+        <button class="btn btn-block btn-success" ng-click="logout()">Log Out</button>
+      </div>
 
-<button class="center btn btn-block btn-success" ng-click="authenticate('instagram')">Sign in with Instagram</button>
+
+
+      <div ng-if="isAuthenticated()" class="center">
+        <h4>Images:</h4>
+        <p ng-init="getUserImages($scope.user.token)"></p>
+      </div>
+
+<!-- <div class="row">
+  <div ng-repeat="p in pics | orderBy:orderBy" class="col-md-2">
+    <a href="{{p.link}}" target="_blank"><img ng-src="{{p.images.low_resolution.url}}" class="img-responsive thumbnail" title="{{p.caption.text}}"></a>
+    <span class="glyphicon glyphicon-heart"> {{p.likes.count}}</span>
+  </div>
+</div> -->
+
+        <!-- <button ng-click="authenticate('instagram')">Sign in with Instagram</button> -->
+
+      <div ng-if="!isAuthenticated()" class="center">
+        <button class="center btn btn-block btn-success" ng-click="authenticate('instagram')">Sign in with Instagram</button>
+      </div>
 <!-- <div ng-if="!isAuthenticated()">
   <a href="/login">Login</a>
 </div> -->
-<ul ng-if="isAuthenticated()">
+<!-- <ul ng-if="isAuthenticated()">
   <li><a ng-click="logout()">Logout</a></li>
-</ul>
+</ul> -->
 
   </div>
 
 <div class="container">
 
-  <div ng-if="isAuthenticated()">
-    <div class="row">
-      <div ng-repeat="photo in photos" class="col-lg-2 col-sm-3 col-xs-4">
-        <a href="#/photo/{{photo.id}}">
-          <img ng-src="{{photo.images.standard_resolution.url}}" class="thumbnail img-responsive">
-        </a>
-      </div>
-    </div>
+
   </div>
 
-  <!-- <div ng-if="!isAuthenticated()">
-    <div class="jumbotron">
-      <h2><i class="ion-images"></i> Instagram</h2>
-      <p>This is a basic Instagram clone powered by <strong>Satellizer</strong>. To continue, please log in with your Instagram account or create a new email account.</p>
-      <p>
-        <a class="btn btn-lg btn-success" href="#/login"><i class="ion-log-in"></i> Log in</a>
-        <a class="btn btn-lg btn-primary" href="#/signup"><i class="ion-person-add"></i> Create account</a>
-      </p>
-    </div>
-  </div>
- -->
+
 <!--   <div ng-if="isAuthenticated() && !currentUser.username" class="center-form panel">
     <div class="panel-body">
       <h5 class="text-center"><i class="ion-link"></i> Link Account</h5>
