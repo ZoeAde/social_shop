@@ -35,35 +35,35 @@ module.exports = router;
 // });
 
 // get single user
-// router.get('/api/user/:token', function(req, res) {
-//   models.User.find({
-//     where: {
-//       token: req.params.token
-//     }
-//   }).then(function(user) {
-//     res.json(user);
-//   });
-// });
+router.get('/api/user/:token', function(req, res) {
+  models.User.find({
+    where: {
+      token: req.params.token
+    }
+  }).then(function(user) {
+    res.json(user);
+  });
+});
 
 // update single user
-// router.put('/user/:id', function(req, res) {
-//   models.User.find({
-//     where: {
-//       id: req.params.id
-//     }
-//   }).then(function(user) {
-//     if(user){
-//       user.updateAttributes({
-//         name: req.body.name,
-//         email: req.body.email,
-//         username: req.body.username,
-//         code:req.body.code
-//       }).then(function(user) {
-//         res.send(user);
-//       });
-//     }
-//   });
-// });
+router.put('/user/:id', function(req, res) {
+  models.User.find({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(user) {
+    if(user){
+      user.updateAttributes({
+        name: req.body.name,
+        email: req.body.email,
+        username: req.body.username,
+        code:req.body.code
+      }).then(function(user) {
+        res.send(user);
+      });
+    }
+  });
+});
 
 // // delete a single user
 // router.delete('/user/:id', function(req, res) {
