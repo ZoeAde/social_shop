@@ -12,10 +12,10 @@ body{
   text-align:center;
 }
 
-a, a:visited {
+/*a, a:visited {
   outline:none;
   color:#389dc1;
-}
+}*/
 
 a:hover{
   text-decoration:none;

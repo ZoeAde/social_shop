@@ -26,16 +26,17 @@ app.factory('myFactory', ['$http', function($http){
 
 app.factory('instagram', ['$http', function($http){
 
-  return {
-    fetchPopular: function(callback){
-
-            var endPoint = "https://api.instagram.com/v1/media/popular?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK";
-
-            $http.jsonp(endPoint).success(function(response){
-                callback(response.data);
-            });
-    }
-  }
-
+    return {
+      getFeed: function() {
+        return $http.get('http://localhost:5000/api/feed');
+      }
+      // ,
+      // getMediaById: function(id) {
+      //   return $http.get('http://localhost:3000/api/media/' + id);
+      // },
+      // likeMedia: function(id) {
+      //   return $http.post('http://localhost:3000/api/like', { mediaId: id });
+      // }
+    };
 }]);
 

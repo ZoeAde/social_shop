@@ -138,5 +138,17 @@ router.post('/instagram', function(req, res) {
   });
 });
 
+router.get('/api/feed', ensureAuthenticated, function(req, res) {
+  console.log('this is my token: ', token);
+  var feedUrl = 'https://api.instagram.com/v1/users/self/media/recent/?access_token=' + token;
+  var params = { access_token: req.user.accessToken };
+
+  request.get({ url: feedUrl, qs: params, json: true }, function(error, response, body) {
+    if (!error && response.statusCode == 200) {
+      res.send(body.data);
+    }
+  });
+});
+
 
 module.exports = router;

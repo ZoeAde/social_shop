@@ -32,13 +32,10 @@ $routeProvider
       templateUrl: 'views/jeet.html',
       controller: 'mainController'
     })
-    // .when('/login', {
-    //   title: 'Login',
-    //   templateUrl: 'views/login.html',
-    //   controller: 'loginController'
-    // })
     .otherwise({
       redirectTo: '/'
 });
+
+
 
 });

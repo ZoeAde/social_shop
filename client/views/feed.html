@@ -1,6 +1,8 @@
-  <div class="container center">
+    <div class="container center">
+      <div ng-if="!isAuthenticated()" class="center">
+        <button class="center btn btn-block btn-success" ng-click="authenticate('instagram')">Sign in with Instagram</button>
+      </div>
 
-    <div class="container">
       <div ng-if="isAuthenticated()" class="center">
         <h1>{{ user.name }}</h1>
         <br>
@@ -9,73 +11,18 @@
         <button class="btn btn-block btn-success" ng-click="logout()">Log Out</button>
       </div>
 
-
-
       <div ng-if="isAuthenticated()" class="center">
         <h4>Images:</h4>
-        <p ng-init="getUserImages($scope.user.token)"></p>
+        <div>{{ user }}</div>
+        <div>{{ token }}</div>
+<!--         <div ng-repeat="photo in photos track by $index">
+          <a href="#/photo/{{photo.id}}">
+          <img ng-src="{{photo.images.standard_resolution.url}}">
+          </a>
+        </div> -->
       </div>
 
-        <div class="bar">
-
-    <!-- These two buttons switch the layout varaible,
-       which causes the correct UL to be shown. -->
-
-    <a class="list-icon" ng-class="{active: isLayout('list')}" ng-click="setLayout('list')"></a>
-    <a class="grid-icon" ng-class="{active: isLayout('grid')}" ng-click="setLayout('grid')"></a>
-  </div>
-
-  <!-- We have two layouts. We choose which one to show depending on the "layout" binding -->
-
-  <ul ng-show="isLayout('grid')" class="grid">
-    <li ng-repeat="p in pics">
-      <a href="{{p.link}}" target="_blank"><img ng-src="{{p.images.low_resolution.url}}" /></a>
-    </li>
-  </ul>
-
-  <ul ng-show="isLayout('list')" class="list">
-
-    <li ng-repeat="p in pics">
-      <a href="{{p.link}}" target="_blank"><img ng-src="{{p.images.thumbnail.url}}" /></a>
-      <p>{{p.caption.text}}</p>
-    </li>
-  </ul>
-
-<!-- <div class="row">
-  <div ng-repeat="p in pics | orderBy:orderBy" class="col-md-2">
-    <a href="{{p.link}}" target="_blank"><img ng-src="{{p.images.low_resolution.url}}" class="img-responsive thumbnail" title="{{p.caption.text}}"></a>
-    <span class="glyphicon glyphicon-heart"> {{p.likes.count}}</span>
-  </div>
-</div> -->
-
-        <!-- <button ng-click="authenticate('instagram')">Sign in with Instagram</button> -->
-
-      <div ng-if="!isAuthenticated()" class="center">
-        <button class="center btn btn-block btn-success" ng-click="authenticate('instagram')">Sign in with Instagram</button>
-      </div>
-<!-- <div ng-if="!isAuthenticated()">
-  <a href="/login">Login</a>
-</div> -->
-<!-- <ul ng-if="isAuthenticated()">
-  <li><a ng-click="logout()">Logout</a></li>
-</ul> -->
-
-  </div>
-
-<div class="container">
 
 
   </div>
 
-
-<!--   <div ng-if="isAuthenticated() && !currentUser.username" class="center-form panel">
-    <div class="panel-body">
-      <h5 class="text-center"><i class="ion-link"></i> Link Account</h5>
-      <p>To complete the registration process you must link your Instagram account.</p>
-      <button class="btn btn-block btn-instagram" ng-click="linkInstagram()">
-        <i class="ion-social-instagram"></i> Sign in with Instagram
-      </button>
-    </div>
-  </div> -->
-
-</div>

@@ -1,5 +1,13 @@
 app.controller('mainController', ['$scope', 'instagram', 'myFactory', '$http', '$interval', '$location', '$routeParams', '$filter', '$document', '$window', '$auth', '$rootScope', function($scope, instagram, myFactory, $http, $interval, $location, $routeParams, $filter, $document, $window, $auth, $rootScope){
 
+
+if ($auth.isAuthenticated()) {
+  instagram.getFeed().success(function(data) {
+    $scope.photos = data;
+  });
+}
+
+
   $scope.isAuthenticated = function() {
     return $auth.isAuthenticated();
   };
@@ -25,26 +33,6 @@ app.controller('mainController', ['$scope', 'instagram', 'myFactory', '$http', '
     delete $window.localStorage.currentUser;
   };
 
-  // go = function(marker){
-  //   $location.path(marker);
-  // };
-  $scope.layout = 'grid';
-
-    $scope.setLayout = function(layout){
-        $scope.layout = layout;
-    };
-
-    $scope.isLayout = function(layout){
-        return $scope.layout == layout;
-    };
-
-  $scope.pics = [];
-
-  // Usamos el servicio q construimos
-  instagram.fetchPopular(function(data){
-
-    $scope.pics = data;
-  });
 
 
 }]);
