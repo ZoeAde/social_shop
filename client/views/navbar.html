@@ -1,3 +1,9 @@
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">three</a></li>
+</ul>
 <!-- TOP NAV -->
 <div class="navbar-fixed">
   <nav>
@@ -5,14 +11,11 @@
       <a href="#!" class="brand-logo center"><img src="../mend_white.png" width="120" height="70"></a>
 
 <!-- RIGHT TOP NAV -->
-        <ul class="right">
-<!--           <li><a href="sass.html">Login</a></li>
-          <li><a href="sass.html">Feed</a></li>
-          <li><a href="badges.html">Profile</a></li> -->
-          <li><a class="waves-effect waves-light" href="mobile.html"><i class="material-icons ">view_module</i></a></li>
-          <li><a class="waves-effect waves-light" href="mobile.html"><i class="material-icons">settings</i></a></li>
-
-        </ul>
+      <ul class="right">
+        <li><a class="waves-effect waves-light" href="mobile.html"><i class="material-icons ">view_module</i></a></li>
+        <li><a class="waves-effect waves-light" href="#!"><i class="material-icons">settings</i></a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
 
 <!-- LEFT TOP NAV -->
       <ul class="left">
@@ -34,10 +37,10 @@
 <div class="row blue-grey lighten-4">
     <div class="col s12">
         <ul class="tabs blue-grey lighten-4" tabs>
-            <li class="tab col s3"><a href="#test1">Profile</a></li>
-            <li class="tab col s3"><a class="active" href="#test2">Listings</a></li>
-            <li class="tab col s3"><a href="#test3">Item Bids</a></li>
-            <li class="tab col s3"><a href="#test4">Wish List</a></li>
+            <li class="tab col s3"><a href="/#/profile">Profile</a></li>
+            <li class="tab col s3"><a class="active" href="/#/listings">Listings</a></li>
+            <li class="tab col s3"><a href="/#/bids">Item Bids</a></li>
+            <li class="tab col s3"><a href="/#/wishlist">Wish List</a></li>
         </ul>
     </div>
 <!--     <div id="test1" class="col s12">Test 1</div>

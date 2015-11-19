@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute', 'angularMoment', 'ngMessages', 'duScroll', 'satellizer']);
+var app = angular.module('myApp', ['ngRoute', 'angularMoment', 'ngMessages', 'duScroll', 'satellizer', 'ui.materialize']);
 
 //creating different title name on each page in browser tab
 app.run(['$rootScope', '$route', function($rootScope) {
@@ -32,11 +32,21 @@ $routeProvider
       templateUrl: 'views/jeet.html',
       controller: 'mainController'
     })
-    // .when('/login', {
-    //   title: 'Login',
-    //   templateUrl: 'views/login.html',
-    //   controller: 'loginController'
-    // })
+    .when('/listings', {
+      title: 'Current Items Listed',
+      templateUrl: 'views/listings.html',
+      controller: 'mainController'
+    })
+    .when('/bids', {
+      title: 'Current Items Bidding On',
+      templateUrl: 'views/bids.html',
+      controller: 'mainController'
+    })
+    .when('/wishlist', {
+      title: 'Current Items Listed',
+      templateUrl: 'views/wishlist.html',
+      controller: 'mainController'
+    })
     .otherwise({
       redirectTo: '/'
 });

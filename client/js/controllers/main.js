@@ -1,4 +1,4 @@
-app.controller('mainController', function($scope, myFactory, $http, $interval, instagram, $location, $routeParams, $filter, $document, $window, $auth, $rootScope, $anchorScroll){
+app.controller('mainController', function($scope, myFactory, $http, $interval, $location, $routeParams, $filter, $document, $window, $auth, $rootScope, $anchorScroll){
 
   $anchorScroll();
 
@@ -17,10 +17,10 @@ app.controller('mainController', function($scope, myFactory, $http, $interval, i
         console.log($rootScope.token);
         $location.path('/home');
       })
-    .catch(function(response) {
-      console.log(response);
-    });
-  };
+      .catch(function(response) {
+        console.log(response);
+      });
+    };
 
   $scope.logout = function() {
     $auth.logout();
