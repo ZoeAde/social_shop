@@ -154,7 +154,7 @@ request
   .get(instagramUrl)
   .on('response', function(response) {
     console.log('response status code:', response.statusCode) // 200
-    console.log('response body:', response.body) // 'image/png'
+    console.log('response', response) // 'image/png'
 
   })
 
