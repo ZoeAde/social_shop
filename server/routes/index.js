@@ -2,11 +2,6 @@ var path = require('path');
 var express = require('express');
 var router = express.Router();
 
-router.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, '../../client/index.html'));
-});
-
-module.exports = router;
 
 // var express = require('express');
 // var router = express.Router();
@@ -17,35 +12,18 @@ module.exports = router;
 // });
 
 // /////////////////USERS///////////////////
-// router.post('/users', function(req, res) {
-//   models.User.create({
-//     name: req.body.name,
-//     email: req.body.email,
-//     username: req.body.username
-//   }).then(function(user) {
-//     res.json(user);
-//   });
-// });
+// // get single user
+router.get('/api/user/:token', function(req, res) {
+  models.User.find({
+    where: {
+      token: req.params.token
+    }
+  }).then(function(user) {
+    res.json(user);
+  });
+});
 
-// get all users
-// router.get('/users', function(req, res) {
-//   models.User.findAll({}).then(function(users) {
-//     res.json(users);
-//   });
-// });
-
-// get single user
-// router.get('/api/user/:token', function(req, res) {
-//   models.User.find({
-//     where: {
-//       token: req.params.token
-//     }
-//   }).then(function(user) {
-//     res.json(user);
-//   });
-// });
-
-// update single user
+// // update single user
 // router.put('/user/:id', function(req, res) {
 //   models.User.find({
 //     where: {
@@ -170,4 +148,4 @@ module.exports = router;
 // ////////////////////BID///////////////////
 
 
-// module.exports = router;
+module.exports = router;

@@ -1,6 +1,12 @@
-app.controller('mainController', function($scope, myFactory, $http, $interval, $location, $routeParams, $filter, $document, $window, $auth, $rootScope, $anchorScroll){
+app.controller('mainController', ['$scope', 'instagram', 'myFactory', '$http', '$interval', '$location', '$routeParams', '$filter', '$document', '$window', '$auth', '$rootScope', function($scope, instagram, myFactory, $http, $interval, $location, $routeParams, $filter, $document, $window, $auth, $rootScope){
 
-  $anchorScroll();
+
+  $scope.getFeed = function(instagram_id) {
+    // var instagramUrl = 'https://api.instagram.com/v1/users/' + instagram_id + '/media/recent/?client_id=311624c2f9f9454a9c7c053b234cc12a';
+
+    $http.get('http://localhost:5000/auth/api/feed');
+  };
+
 
   $scope.isAuthenticated = function() {
     return $auth.isAuthenticated();
@@ -27,9 +33,6 @@ app.controller('mainController', function($scope, myFactory, $http, $interval, $
     delete $window.localStorage.currentUser;
   };
 
-  // go = function(marker){
-  //   $location.path(marker);
-  // };
 
 
-});
+}]);

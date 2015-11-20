@@ -1,6 +1,8 @@
-  <div class="container center">
+    <div class="container center">
+      <div ng-if="!isAuthenticated()" class="center">
+        <button class="center btn btn-block btn-success" ng-click="authenticate('instagram')">Sign in with Instagram</button>
+      </div>
 
-    <div class="container">
       <div ng-if="isAuthenticated()" class="center">
         <h1>{{ user.name }}</h1>
         <br>
@@ -11,11 +13,18 @@
 
       <div ng-if="isAuthenticated()" class="center">
         <h4>Images:</h4>
-        <p ng-init="getUserImages($scope.user.token)"></p>
+        <div>{{ user }}</div>
+        <div>{{ user.instagram_id }}</div>
+        <div ng-init=getFeed()></div>
+<!--         <div ng-repeat="photo in photos track by $index">
+          <a href="#/photo/{{photo.id}}">
+          <img ng-src="{{photo.images.standard_resolution.url}}">
+          </a>
+        </div> -->
       </div>
 
-      <div ng-if="!isAuthenticated()" class="center">
-        <button class="center btn btn-block btn-success" ng-click="authenticate('instagram')">Sign in with Instagram</button>
-      </div>
 
-</div>
+
+  </div>
+
+>>>>>>> instagram
