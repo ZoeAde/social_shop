@@ -14,7 +14,8 @@
       <div ng-if="isAuthenticated()" class="center">
         <h4>Images:</h4>
         <div>{{ user }}</div>
-        <div>{{ token }}</div>
+        <div>{{ user.instagram_id }}</div>
+        <div ng-init=getFeed()></div>
 <!--         <div ng-repeat="photo in photos track by $index">
           <a href="#/photo/{{photo.id}}">
           <img ng-src="{{photo.images.standard_resolution.url}}">

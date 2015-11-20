@@ -33,7 +33,7 @@ $routeProvider
       controller: 'mainController'
     })
     .otherwise({
-      redirectTo: '/'
+      redirectTo: '/hgfjhfhgfhjgfjgh'
 });
 
 

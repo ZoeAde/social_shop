@@ -138,16 +138,26 @@ router.post('/instagram', function(req, res) {
   });
 });
 
-router.get('/api/feed', ensureAuthenticated, function(req, res) {
-  console.log('this is my token: ', token);
-  var feedUrl = 'https://api.instagram.com/v1/users/self/media/recent/?access_token=' + token;
-  var params = { access_token: req.user.accessToken };
+router.get('/api/feed', function(req, res) {
+  var instagramUrl = "https://api.instagram.com/v1/users/2284359629/media/recent/?client_id=311624c2f9f9454a9c7c053b234cc12a";
+  // console.log('hitting route');
+  // res.send('500');
 
-  request.get({ url: feedUrl, qs: params, json: true }, function(error, response, body) {
-    if (!error && response.statusCode == 200) {
-      res.send(body.data);
-    }
-  });
+  // request.get(instagramUrl, function(error, response, body) {
+  //   if (!error && response.statusCode == 200) {
+  //     console.log('response: ', response);
+  //     res.send(response);
+  //   }
+  // });
+
+request
+  .get(instagramUrl)
+  .on('response', function(response) {
+    console.log('response status code:', response.statusCode) // 200
+    console.log('response body:', response.body) // 'image/png'
+
+  })
+
 });
 
 

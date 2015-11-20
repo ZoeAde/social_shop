@@ -1,11 +1,20 @@
 app.controller('mainController', ['$scope', 'instagram', 'myFactory', '$http', '$interval', '$location', '$routeParams', '$filter', '$document', '$window', '$auth', '$rootScope', function($scope, instagram, myFactory, $http, $interval, $location, $routeParams, $filter, $document, $window, $auth, $rootScope){
 
 
-if ($auth.isAuthenticated()) {
-  instagram.getFeed().success(function(data) {
-    $scope.photos = data;
-  });
-}
+  $scope.getFeed = function(instagram_id) {
+    var instagramUrl = 'https://api.instagram.com/v1/users/' + instagram_id + '/media/recent/?client_id=311624c2f9f9454a9c7c053b234cc12a';
+
+    $http.get('http://localhost:5000/auth/api/feed');
+    // $http({
+    //   method: 'GET',
+    //   url: instagramUrl
+    // }).then(function successCallback(response) {
+    //     console.log('data:', response);
+    //     // $scope.pics = data;
+    //   }, function errorCallback(response) {
+    //     console.log('http request error');
+    //   });
+  };
 
 
   $scope.isAuthenticated = function() {

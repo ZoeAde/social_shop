@@ -2,11 +2,6 @@ var path = require('path');
 var express = require('express');
 var router = express.Router();
 
-router.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, '../../client/index.html'));
-});
-
-module.exports = router;
 
 // var express = require('express');
 // var router = express.Router();
@@ -17,24 +12,7 @@ module.exports = router;
 // });
 
 // /////////////////USERS///////////////////
-// router.post('/users', function(req, res) {
-//   models.User.create({
-//     name: req.body.name,
-//     email: req.body.email,
-//     username: req.body.username
-//   }).then(function(user) {
-//     res.json(user);
-//   });
-// });
-
-// get all users
-// router.get('/users', function(req, res) {
-//   models.User.findAll({}).then(function(users) {
-//     res.json(users);
-//   });
-// });
-
-// get single user
+// // get single user
 router.get('/api/user/:token', function(req, res) {
   models.User.find({
     where: {
@@ -45,25 +23,25 @@ router.get('/api/user/:token', function(req, res) {
   });
 });
 
-// update single user
-router.put('/user/:id', function(req, res) {
-  models.User.find({
-    where: {
-      id: req.params.id
-    }
-  }).then(function(user) {
-    if(user){
-      user.updateAttributes({
-        name: req.body.name,
-        email: req.body.email,
-        username: req.body.username,
-        code:req.body.code
-      }).then(function(user) {
-        res.send(user);
-      });
-    }
-  });
-});
+// // update single user
+// router.put('/user/:id', function(req, res) {
+//   models.User.find({
+//     where: {
+//       id: req.params.id
+//     }
+//   }).then(function(user) {
+//     if(user){
+//       user.updateAttributes({
+//         name: req.body.name,
+//         email: req.body.email,
+//         username: req.body.username,
+//         code:req.body.code
+//       }).then(function(user) {
+//         res.send(user);
+//       });
+//     }
+//   });
+// });
 
 // // delete a single user
 // router.delete('/user/:id', function(req, res) {
@@ -170,4 +148,4 @@ router.put('/user/:id', function(req, res) {
 // ////////////////////BID///////////////////
 
 
-// module.exports = router;
+module.exports = router;
