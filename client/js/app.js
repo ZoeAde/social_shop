@@ -1,12 +1,5 @@
 var app = angular.module('myApp', ['ngRoute', 'angularMoment', 'ngMessages', 'duScroll', 'satellizer']);
 
-//creating different title name on each page in browser tab
-app.run(['$rootScope', '$route', function($rootScope) {
-    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        $rootScope.title = current.$$route.title;
-    });
-}]);
-
 app.config(function($routeProvider, $authProvider, $locationProvider) {
 
 $authProvider.instagram({

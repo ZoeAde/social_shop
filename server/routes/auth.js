@@ -11,6 +11,7 @@ var models = require('../models/index.js');
 
 // *** login required *** //
 function ensureAuthenticated(req, res, next) {
+
   if (!(req.headers && req.headers.authorization)) {
     return res.status(400).send({
       message: 'You did not provide a JSON Web Token in the authorization header.'
@@ -51,7 +52,8 @@ function createToken(user) {
   var payload = {
     exp: moment().add(14, 'days').unix(),
     iat: moment().unix(),
-    sub: user._id
+    sub: user.instagram_id,
+    id: user.id
   };
   return jwt.encode(payload, config.TOKEN_SECRET);
 }
@@ -69,7 +71,7 @@ router.post('/instagram', function(req, res) {
 
   // Step 1. Exchange authorization code for access token.
   request.post({ url: accessTokenUrl, form: params, json: true }, function(error, response, body) {
-    // console.log(body);
+    console.log('body user:', body.user);
     // Step 2a. Link user accounts.
     if (req.headers.authorization) {
 
@@ -78,6 +80,7 @@ router.post('/instagram', function(req, res) {
             instagram_id: body.user.id
           }
         }).then(function(existingUser) {
+          console.log('body user id: ', body.user.id);
         if (existingUser) {
           return res.status(409).send({ message: 'There is already an Instagram account that belongs to you' });
         }
@@ -86,7 +89,7 @@ router.post('/instagram', function(req, res) {
         var payload = jwt.decode(token, config.TOKEN_SECRET);
         models.User.find({
           where: {
-            instagram_id: payload.sub
+            instagram_id: body.user.id
           }
         }).then(function(user) {
           if (!user) {
@@ -106,7 +109,6 @@ router.post('/instagram', function(req, res) {
       });
     } else {
       // Step 2b. Create a new user account or return an existing one.
-      console.log(body.user.id);
         models.User.findOne({
           where: {
             instagram_id: body.user.id
@@ -138,27 +140,28 @@ router.post('/instagram', function(req, res) {
   });
 });
 
-router.get('/api/feed', function(req, res) {
-  var instagramUrl = "https://api.instagram.com/v1/users/2284359629/media/recent/?client_id=311624c2f9f9454a9c7c053b234cc12a";
-  // console.log('hitting route');
-  // res.send('500');
 
-  // request.get(instagramUrl, function(error, response, body) {
-  //   if (!error && response.statusCode == 200) {
-  //     console.log('response: ', response);
-  //     res.send(response);
-  //   }
+
+router.get('/api/feed', ensureAuthenticated, function(req, res) {
+  var instagram_id = req.user.instagram_id;
+  var instagramUrl = "https://api.instagram.com/v1/users/" + instagram_id + "/media/recent/?client_id=311624c2f9f9454a9c7c053b234cc12a";
+
+  console.log('instagram URL', instagramUrl);
+  request
+    .get(instagramUrl, function(e, r, user) {
+      // console.log('e:', e);
+      // console.log('r:', r);
+      var singleUrl = JSON.parse(user).data[0].images.standard_resolution.url
+      console.log('user:', singleUrl);
+      res.send({ url: singleUrl });
+    })
+  //   .on('response', function(response) {
+  //     console.log('this is the start of my response: ', Object.keys(response.req));
   // });
-
-request
-  .get(instagramUrl)
-  .on('response', function(response) {
-    console.log('response status code:', response.statusCode) // 200
-    console.log('response', response) // 'image/png'
-
-  })
-
 });
+
+
+
 
 
 module.exports = router;

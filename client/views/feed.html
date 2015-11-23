@@ -4,7 +4,7 @@
       </div>
 
       <div ng-if="isAuthenticated()" class="center">
-        <h1>{{ user.name }}</h1>
+        <h1>User Name: {{ user.name }}</h1>
         <br>
         <img src={{user.profile_picture}}>
         <br><br><br>
@@ -13,15 +13,18 @@
 
       <div ng-if="isAuthenticated()" class="center">
         <h4>Images:</h4>
-        <div>{{ user }}</div>
+  <!--       <div>{{ user }}</div> -->
         <div>{{ user.instagram_id }}</div>
-        <div ng-init=getFeed()></div>
+        <div></div>
+        <img src="{{ singleImage }}">
 <!--         <div ng-repeat="photo in photos track by $index">
           <a href="#/photo/{{photo.id}}">
           <img ng-src="{{photo.images.standard_resolution.url}}">
           </a>
         </div> -->
       </div>
+
+      <button ng-click="getFeed()">Click MEEEE</button>
 
 
 

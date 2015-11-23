@@ -1,3 +1,13 @@
+app.factory('instagram', ['$http', function($http){
+    return {
+      getFeed: function() {
+        return $http.get('http://localhost:5000/api/feed');
+    }
+  };
+}]);
+
+///////////////////////////////////////////
+
 app.factory('myFactory', ['$http', function($http){
   var obj = {};
 
@@ -24,19 +34,4 @@ app.factory('myFactory', ['$http', function($http){
   return obj;
 }]);
 
-app.factory('instagram', ['$http', function($http){
-
-    return {
-      getFeed: function() {
-        return $http.get('http://localhost:5000/api/feed');
-
-
-            // var endPoint = 'https://api.instagram.com/v1/users/2284359629/media/recent/?client_id=311624c2f9f9454a9c7c053b234cc12a';
-
-            // $http.jsonp(endPoint).success(function(response){
-            //     callback(response.data);
-            // });
-    }
-  }
-}]);
 
