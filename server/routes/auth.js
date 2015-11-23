@@ -147,17 +147,30 @@ router.get('/api/feed', ensureAuthenticated, function(req, res) {
   var instagramUrl = "https://api.instagram.com/v1/users/" + instagram_id + "/media/recent/?client_id=311624c2f9f9454a9c7c053b234cc12a";
 
   console.log('instagram URL', instagramUrl);
+  // request
+  //   .get(instagramUrl, function(e, r, user) {
+  //     // console.log('e:', e);
+  //     // console.log('r:', r);
+  //     var singleUrl = JSON.parse(user).data[0].images.standard_resolution.url
+  //     console.log('user:', singleUrl);
+  //     res.send({ url: singleUrl });
+  //   })
+
   request
     .get(instagramUrl, function(e, r, user) {
       // console.log('e:', e);
       // console.log('r:', r);
-      var singleUrl = JSON.parse(user).data[0].images.standard_resolution.url
-      console.log('user:', singleUrl);
-      res.send({ url: singleUrl });
+      var photos = [];
+      var totalImages = JSON.parse(user).data;
+      for (var i = 0; i < totalImages.length; i++) {
+        photos.push(totalImages[i].images.standard_resolution.url);
+      };
+      res.send(photos);
     })
-  //   .on('response', function(response) {
-  //     console.log('this is the start of my response: ', Object.keys(response.req));
-  // });
+
+
+
+
 });
 
 
