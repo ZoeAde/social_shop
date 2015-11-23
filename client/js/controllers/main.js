@@ -26,7 +26,7 @@ app.controller('mainController', ['$scope', 'instagram', 'myFactory', '$http', '
         $rootScope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         $rootScope.user = response.data.user;
         $rootScope.token = response.data.token;
-        $location.path('/home');
+        $location.path('/profile');
       })
       .catch(function(response) {
         console.log(response);

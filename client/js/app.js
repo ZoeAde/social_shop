@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute', 'angularMoment', 'ngMessages', 'duScroll', 'satellizer', 'ui.materialize']);
+var app = angular.module('myApp', ['ngRoute', 'angularMoment', 'ngMessages', 'duScroll', 'satellizer']);
 
 app.config(function($routeProvider, $authProvider, $locationProvider) {
 
