@@ -19,3 +19,7 @@ module.exports = function(sequelize, DataTypes) {
   });
   return Item;
 };
+
+
+//item title
+//brand

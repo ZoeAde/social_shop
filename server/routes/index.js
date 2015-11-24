@@ -50,21 +50,21 @@ router.get('/api/user/:token', function(req, res) {
 
 ///////////////ITEMS////////////////
 // //post new item
-// router.post('/items', function(req, res) {
-//   models.Item.create({
-//     seller: req.body.seller,
-//     buyer: req.body.buyer,
-//     size: req.body.size,
-//     category: req.body.category,
-//     description: req.body.description,
-//     condition: req.body.condition,
-//     status: req.body.status,
-//     minimum: req.body.minimum,
-//     imgUrl: req.body.imgUrl
-//   }).then(function(item) {
-//     res.json(item);
-//   });
-// });
+router.post('/api/items', function(req, res) {
+  models.Item.create({
+    seller: req.body.seller,
+    buyer: req.body.buyer,
+    size: req.body.size,
+    category: req.body.category,
+    description: req.body.description,
+    condition: req.body.condition,
+    status: req.body.status,
+    minimum: req.body.minimum,
+    imgUrl: req.body.imgUrl
+  }).then(function(item) {
+    res.json(item);
+  });
+});
 
 // // get all items
 // router.get('/items', function(req, res) {

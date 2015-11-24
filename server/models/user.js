@@ -22,3 +22,9 @@ module.exports = function(sequelize, DataTypes) {
   });
   return User;
 };
+
+//address
+//city
+//state
+//zip
+//phone number;
