@@ -1,17 +1,10 @@
 var path = require('path');
 var express = require('express');
 var router = express.Router();
+var models = require('../models/index');
 
 
-// var express = require('express');
-// var router = express.Router();
-// var models = require('../models/index');
-
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'Express' });
-// });
-
-// /////////////////USERS///////////////////
+// /////////////////USERS/////////////////
 // // get single user
 router.get('/api/user/:token', function(req, res) {
   models.User.find({
@@ -55,7 +48,7 @@ router.get('/api/user/:token', function(req, res) {
 // });
 
 
-/////////////////ITEMS////////////////////
+///////////////ITEMS////////////////
 // //post new item
 // router.post('/items', function(req, res) {
 //   models.Item.create({
