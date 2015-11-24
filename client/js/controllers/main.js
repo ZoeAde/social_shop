@@ -6,6 +6,13 @@ app.controller('mainController', ['$scope', 'instagram', 'myFactory', '$http', '
     });
   };
 
+  $scope.getItemsForSale = function() {
+    $http.get('http://localhost:5000/api/items').then(function (response) {
+      $scope.itemsForSale = response.data;
+      console.log($scope.itemsForSale);
+    });
+  };
+
   $scope.imageInfo = function() {
     $scope.newItemUrl = this.photo;
   };

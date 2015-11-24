@@ -56,7 +56,7 @@ router.post('/api/items', function(req, res) {
     buyer: req.body.buyer,
     size: req.body.size,
     category: req.body.category,
-    description: req.body.description,
+    summary: req.body.summary,
     condition: req.body.condition,
     status: req.body.status,
     minimum: req.body.minimum,
@@ -67,11 +67,12 @@ router.post('/api/items', function(req, res) {
 });
 
 // // get all items
-// router.get('/items', function(req, res) {
-//   models.Item.findAll({}).then(function(items) {
-//     res.json(items);
-//   });
-// });
+router.get('/api/items', function(req, res) {
+  models.Item.findAll({}).then(function(items) {
+    console.log(items);
+    res.json(items);
+  });
+});
 
 // // get single item
 // router.get('/item/:id', function(req, res) {
