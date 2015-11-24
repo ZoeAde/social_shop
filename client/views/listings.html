@@ -1,1 +1,76 @@
 <h1>Listings</h1>
+
+<div>
+  <button class="btn waves-effect waves-light" ng-click="showFeed=true">Add New Listing
+  <i class="material-icons right">add</i>
+  </button>
+  <button class="btn waves-effect waves-light" ng-click="showFeed=true">View Current Listings
+  <i class="material-icons right">view_list</i>
+  </button>
+</div>
+
+<div class="container center" ng-show="showFeed">
+<h4>Select An Item To List</h4><br>
+  <div class="row">
+    <div ng-if="isAuthenticated()" ng-init="getFeed()">
+      <div ng-repeat="photo in photos" class="inline col s4">
+        <img ng-click="imageInfo()" class="feedImage" src={{photo}}>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <form class="col s12">
+    <div class="row">
+      <div class="col s4">
+        <div class="row">
+          <div>
+            <img class="feedImage" src={{newItemUrl}}>
+          </div>
+        </div>
+      </div>
+      <div class="col s8">
+        <div class="row">
+          <div class="input-field col s4">
+            <input value={{user.name}} id="disabled" type="text" class="validate">
+            <label for="disabled">Full Name</label>
+          </div>
+          <div class="input-field col s4">
+            <input id="password" type="email" class="validate">
+            <label for="password">Email</label>
+          </div>
+          <div class="input-field col s4">
+            <input id="email" type="email" class="validate">
+            <label for="email">Phone Number</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s5">
+            <input id="disabled" type="text" class="validate">
+            <label for="disabled">Address</label>
+          </div>
+          <div class="input-field col s3">
+            <input id="disabled" type="text" class="validate">
+            <label for="disabled">City</label>
+          </div>
+          <div class="input-field col s2">
+            <input id="disabled" type="text" class="validate">
+            <label for="disabled">State</label>
+          </div>
+          <div class="input-field col s2">
+            <input id="disabled" type="text" class="validate">
+            <label for="disabled">Zipcode</label>
+          </div>
+        </div>
+        <div>
+          <button class="btn waves-effect waves-light" type="submit" name="action">List Item For Sale
+          <i class="material-icons right">done</i>
+          </button>
+        </div>
+        <br><br>
+      </div>
+    </div>
+  </form>
+</div>
