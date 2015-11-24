@@ -1,20 +1,19 @@
-
 <!-- TOP NAV -->
-<div class="navbar-fixed">
+<div ng-controller="mainController" class="navbar-fixed">
   <nav>
     <div class="nav-wrapper blue-grey lighten-1">
       <a href="#!" class="brand-logo center"><img src="../mend_white.png" width="120" height="70"></a>
 
 <!-- RIGHT TOP NAV -->
       <ul class="right">
+        <li ng-if="!isAuthenticated()">
+          <a ng-click="authenticate('instagram')">LOG IN</a>
+        </li>
         <li ng-if="isAuthenticated()">
+          <a ng-click="authenticate('instagram')">LOG OUT</a>
+        </li>
+<!--         <li ng-if="isAuthenticated()">
           <a href="/profile"><img class="img-circle" src={{user.profile_picture}} width="50" height="50"></a>
-        </li>
-<!--         <li ng-if="!isAuthenticated()">
-          <label ng-click="authenticate('instagram')">LOG IN</label>
-        </li>
-        <li ng-if="isAuthenticated()">
-          <label ng-click="authenticate('instagram')">LOG OUT</label>
         </li> -->
       </ul>
 
@@ -29,8 +28,8 @@
 
 
 <!-- SECONDARY NAV -->
-<div class="row blue-grey lighten-4">
-    <div class="col s12">
+<div ng-controller="mainController" class="row blue-grey lighten-4">
+    <div ng-if="isAuthenticated()" class="col s12">
         <ul class="tabs blue-grey lighten-4" tabs>
             <li class="tab col s3"><a href="/#/profile">Profile</a></li>
             <li class="tab col s3"><a class="active" href="/#/listings">Listings</a></li>
@@ -38,8 +37,4 @@
             <li class="tab col s3"><a href="/#/wishlist">Wish List</a></li>
         </ul>
     </div>
-<!--     <div id="test1" class="col s12">Test 1</div>
-    <div id="test2" class="col s12">Test 2</div>
-    <div id="test3" class="col s12">Test 3</div>
-    <div id="test4" class="col s12">Test 4</div> -->
 </div>
