@@ -36,31 +36,21 @@ router.get('/api/user/:token', function(req, res) {
 //   });
 // });
 
-// // delete a single user
-// router.delete('/user/:id', function(req, res) {
-//   models.User.destroy({
-//     where: {
-//       id: req.params.id
-//     }
-//   }).then(function(user) {
-//     res.json(user);
-//   });
-// });
-
-
 ///////////////ITEMS////////////////
 // //post new item
 router.post('/api/items', function(req, res) {
   models.Item.create({
+    title: req.body.title,
     seller: req.body.seller,
     buyer: req.body.buyer,
     size: req.body.size,
     category: req.body.category,
-    summary: req.body.summary,
     condition: req.body.condition,
-    status: req.body.status,
+    brand: req.body.brand,
+    summary: req.body.summary,
     minimum: req.body.minimum,
-    imgUrl: req.body.imgUrl
+    imgUrl: req.body.imgUrl,
+    status: req.body.status
   }).then(function(item) {
     res.json(item);
   });
