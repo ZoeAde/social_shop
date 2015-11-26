@@ -56,7 +56,7 @@ router.post('/api/items', function(req, res) {
   });
 });
 
-// // get all items
+// get all items
 router.get('/api/items', function(req, res) {
   models.Item.findAll({}).then(function(items) {
     console.log(items);
