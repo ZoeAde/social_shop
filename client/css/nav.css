@@ -1,3 +1,23 @@
+.navbar-custom {
+    position: absolute;
+}
+
+.highNav {
+  background-color: #1A1740;
+}
+
+.lowNav {
+  display: inline;
+  background-color: #352F7F;
+}
+
+.navbar-custom .nav li a:hover {
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+
 /*#side_nav_ul {
     background-color: rgb(255, 255, 255);
     border-bottom-color: rgba(0, 0, 0, 0.870588);

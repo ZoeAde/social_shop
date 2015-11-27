@@ -1,3 +1,7 @@
+.center {
+  text-align: center;
+}
+
 .center-btn { text-align: center }
 
 .view {
@@ -30,3 +34,4 @@ img:hover {
   margin: 3em;
   background-color: #e6e6e6;
 }
+
