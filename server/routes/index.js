@@ -17,24 +17,27 @@ router.get('/api/user/:token', function(req, res) {
 });
 
 // // update single user
-// router.put('/user/:id', function(req, res) {
-//   models.User.find({
-//     where: {
-//       id: req.params.id
-//     }
-//   }).then(function(user) {
-//     if(user){
-//       user.updateAttributes({
-//         name: req.body.name,
-//         email: req.body.email,
-//         username: req.body.username,
-//         code:req.body.code
-//       }).then(function(user) {
-//         res.send(user);
-//       });
-//     }
-//   });
-// });
+router.put('/api/user/:token', function(req, res) {
+  models.User.find({
+    where: {
+      token: req.params.token
+    }
+  }).then(function(user) {
+    if(user){
+      user.updateAttributes({
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        address: req.body.address,
+        city: req.body.city,
+        state: req.body.state,
+        zipcode: req.body.zipcode
+      }).then(function(user) {
+        res.send(user);
+      });
+    }
+  });
+});
 
 ///////////////ITEMS////////////////
 // //post new item
@@ -58,8 +61,8 @@ router.post('/api/items', function(req, res) {
 
 // get all items
 router.get('/api/items', function(req, res) {
-  models.Item.findAll({}).then(function(items) {
-    console.log(items);
+  models.Item.findAll().then(function(items) {
+    console.log('my items are:', items);
     res.json(items);
   });
 });
@@ -75,22 +78,6 @@ router.get('/api/items', function(req, res) {
 //   });
 // });
 
-// // add new item
-// router.post('/items', function(req, res) {
-//   models.Item.create({
-//     seller: req.body.seller,
-//     buyer: req.body.buyer,
-//     size: req.body.size,
-//     category: req.body.category,
-//     description: req.body.description,
-//     condition: req.body.condition,
-//     status: req.body.status,
-//     minimum: req.body.minimum,
-//     imgUrl: req.body.imgUrl
-//   }).then(function(item) {
-//     res.json(item);
-//   });
-// });
 
 // // update single item
 // router.put('/item/:id', function(req, res) {

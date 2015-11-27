@@ -6,6 +6,14 @@ app.factory('instagram', ['$http', function($http){
   };
 }]);
 
+app.factory('feeder', ['$http', function($http){
+    return {
+      getItems: function() {
+        return $http.get('http://localhost:5000/api/items');
+    }
+  };
+}]);
+
 ///////////////////////////////////////////
 
 app.factory('myFactory', ['$http', function($http){

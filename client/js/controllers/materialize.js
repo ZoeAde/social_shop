@@ -1,5 +1,4 @@
-var app = angular.module('materializeApp', ['ui.materialize'])
-    .controller('BodyController', ["$scope", function ($scope) {
+app.controller('BodyController', ["$scope", function ($scope) {
         $scope.select = {
             value1: "Option1",
             value2: "I'm an option",
@@ -8,8 +7,9 @@ var app = angular.module('materializeApp', ['ui.materialize'])
 
         $scope.dummyInputs = {};
 
-    }])
-    .controller('CollapsibleController', ["$scope", function ($scope) {
+    }]);
+
+app.controller('CollapsibleController', ["$scope", function ($scope) {
         $scope.collapsibleElements = [{
             icon: 'mdi-image-filter-drama',
             title: 'First',
@@ -23,7 +23,9 @@ var app = angular.module('materializeApp', ['ui.materialize'])
             title: 'Third',
             content: 'Lorem ipsum dolor sit amet.'
         }];
-    }]).controller('ToastController', ["$scope", function ($scope) {
+    }]);
+
+app.controller('ToastController', ["$scope", function ($scope) {
         $scope.callback = function(message) {
             alert(message);
         };

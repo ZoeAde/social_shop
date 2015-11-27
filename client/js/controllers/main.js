@@ -1,4 +1,4 @@
-app.controller('mainController', ['$scope', 'instagram', 'myFactory', '$http', '$interval', '$location', '$routeParams', '$filter', '$document', '$window', '$auth', '$rootScope', function($scope, instagram, myFactory, $http, $interval, $location, $routeParams, $filter, $document, $window, $auth, $rootScope){
+app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', '$http', '$interval', '$location', '$routeParams', '$filter', '$document', '$window', '$auth', '$rootScope', function($scope, instagram, feeder, myFactory, $http, $interval, $location, $routeParams, $filter, $document, $window, $auth, $rootScope){
 
   $scope.getFeed = function() {
     $http.get('http://localhost:5000/auth/api/feed').then(function (response) {
@@ -8,7 +8,7 @@ app.controller('mainController', ['$scope', 'instagram', 'myFactory', '$http', '
 
   $scope.getItemsForSale = function() {
     $http.get('http://localhost:5000/api/items').then(function (response) {
-      $scope.itemsForSale = response.data;
+      // $scope.itemsForSale = response.data;
       console.log($scope.itemsForSale);
     });
   };
