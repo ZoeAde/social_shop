@@ -1,37 +1,27 @@
-.center {
-  text-align: center;
+.md-toolbar-tools h1 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: inherit;
 }
 
-.center-btn { text-align: center }
-
-.view {
-width: 100%;
+md-sidenav.md-locked-open {
+  width: 150px !important;
+  min-width: 150px !important;
+  max-width: 150px !important;
 }
 
-img:hover {
-  opacity: 0.6;
-}
 
-.img-circle {
-    border-radius: 50%;
-}
+/*Add New Item Input */
+.inputdemoBasicUsage .md-datepicker-button {
+  width: 36px; }
 
-.inline {
-  display: inline;
-}
-
-.feedImage {
+/*POPUP ADD*/
+.dialogdemoBasicUsage #popupContainer {
+  position: relative; }
+.dialogdemoBasicUsage .footer {
   width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-.border {
-  border: solid;
-  border-width: 3px;
-  border-color: #b3b3b3;
-  margin: 3em;
-  background-color: #e6e6e6;
-}
-
+  text-align: center;
+  margin-left: 20px; }
+.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+  font-size: 0.8em;
+  margin-top: 50px; }
