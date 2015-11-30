@@ -47,6 +47,15 @@ app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', 
     delete $window.localStorage.currentUser;
   };
 
+  $scope.sizes = 'AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
+    'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
+    'WY'.split(' ').map(function(size) {
+        return {abbrev: size};
+      })
+
+
+
+
 }]);
 
 
@@ -116,3 +125,23 @@ function DialogController($scope, $mdDialog) {
     $mdDialog.hide(answer);
   };
 }
+
+
+
+
+
+// TEST
+app.controller('DemoCtrl', function($scope) {
+
+    $scope.categories = ('Shirt Blouse Sweater Jacket Skirt Dress Pants Shorts Shoes Accessories').split(' ').map(function(category) {
+        return {abbrev: category};
+      });
+
+    $scope.sizes = ('N/A XS SM M L XL O/S').split(' ').map(function(size) {
+        return {abbrev: size};
+      });
+
+    $scope.conditions = ('New Lightly-Worn Well-Worn Vintage').split(' ').map(function(condition) {
+        return {abbrev: condition};
+      });
+  });

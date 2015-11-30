@@ -1,9 +1,40 @@
+.inline {
+  display: inline;
+}
+
+.feedImage {
+  height: 30vh;
+  width: auto;
+}
+
 .circle-image {
   border-radius: 50%;
 }
 
+.profile-title {
+  padding-left: 10px;
+}
+
+/*listings input*/
+.inputdemoErrors .inputErrorsApp {
+  min-height: 48px; }
+
+/*user feed*/
+.userfeed md-grid-list {
+  margin: 8px; }
+
+.userfeed md-grid-tile {
+  transition: all 400ms ease-out 50ms; }
 
 /*ANGULAR MATERIAL*/
+.md-button.md-fab {
+  line-height: 5.6rem;
+  min-width: 0;
+  width: 5.6rem;
+  height: 5.6rem;
+  border-radius: 50%;
+}
+
 .md-toolbar-tools h1 {
   font-size: inherit;
   font-weight: inherit;

@@ -12,17 +12,8 @@
 <div ng-cloak>
   <md-content>
     <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="Profile">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Profile</h1>
-          <div class="center">
-  <img src={{user.profile_picture}}>
-</div>
 
-<div class="center">
-  <h5>{{user.username}}</h5>
-</div>
-
+<!--
 <h4>Edit Profile</h4>
 <div class="row border">
   <form class="col s12">
@@ -65,7 +56,20 @@
     </div>
     <br><br>
   </form>
-</div>
+</div> -->
+       <!--  </md-content> -->
+    <md-tab label="Shop">
+        <md-content class="md-padding">
+          <div class="container center">
+            <h1 class="md-display-2">Shop All Items</h1>
+              <div layout="row">
+                <div ng-init="getItemsForSale()">
+                  <div ng-repeat="item in itemsForSale" class="inline col s4">
+                    <img class="feedImage" src={{photo}}>
+                  </div>
+                </div>
+              </div>
+            </div>
         </md-content>
       </md-tab>
       <md-tab label="Listings">
@@ -90,13 +94,12 @@
       </md-tab>
       <md-tab label="Add New Listing">
         <md-content class="md-padding">
-          <h1 class="md-display-2">Add New Listing</h1>
-          <div ng-controller="ModalCtrl" class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="" ng-app="MyApp">
-<!--             <p class="inset">
-              Open a dialog over the app's content. Press escape or click outside to close the dialog and
-              send focus back to the triggering button.
-            </p> -->
 
+          <new-item></new-item>
+
+          <!-- <h1 class="md-display-2">Add New Listing< -->
+          <!-- h1>
+          <div ng-controller="ModalCtrl" class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="" ng-app="MyApp">
             <div class="dialog-demo-content" layout="row" layout-wrap="" layout-margin="">
               <md-button class="md-primary md-raised" ng-click="showAdvanced($event)" flex-sm="20" flex-md="30" flex-gt-md="auto">
                 + New Item
@@ -147,7 +150,7 @@
             </form>
           </md-dialog>
           </script>
-          </div>
+          </div> -->
         </md-content>
       </md-tab>
     </md-tabs>

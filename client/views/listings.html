@@ -1,87 +1,79 @@
-<h1>Listings</h1>
-
-<div>
-  <button class="btn waves-effect waves-light" ng-click="showFeed=true">Add New Listing
-  <i class="material-icons right">add</i>
-  </button>
-  <button class="btn waves-effect waves-light" ng-click="showFeed=true">View Current Listings
-  <i class="material-icons right">view_list</i>
-  </button>
-</div>
-
-<div class="container center" ng-show="showFeed">
-<h4>Select An Item To List</h4><br>
-  <div class="row">
-    <div ng-if="isAuthenticated()" ng-init="getFeed()">
-      <div ng-repeat="photo in photos" class="inline col s4">
-        <img ng-click="imageInfo()" class="feedImage" src={{photo}}>
+<div ng-controller="DemoCtrl" layout="column" ng-cloak ng-init="showFeed=true" class="md-inline-form">
+  <md-content layout-padding>
+    <div class="container center" ng-show="showFeed">
+    <h4>Select An Item To List</h4><br>
+      <div layout="row">
+        <div ng-init="getFeed()">
+          <div ng-repeat="photo in photos" class="inline">
+            <img ng-click="imageInfo()" class="feedImage" src={{photo}}>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-
-<div class="row border">
-  <br>
-  <form class="col s12" action="/api/items" method="post">
-    <input type="hidden" name="seller" id="seller" value={{user.username}}>
-    <input type="hidden" name="imgUrl" id="imgUrl" value={{newItemUrl}}>
-    <input type="hidden" name="status" id="status" value="listed">
-    <div class="row">
-      <div class="col s4">
-        <div class="row">
-          <div>
+    <form name="newItemForm" action="/api/items" method="post">
+      <input type="hidden" name="seller" id="seller" value={{user.username}}>
+      <input type="hidden" name="imgUrl" id="imgUrl" value={{newItemUrl}}>
+      <input type="hidden" name="status" id="status" value="listed">
+      <div layout="row" layout-align="center center">
+        <div layout="column">
+          <md-input-container>
             <img class="feedImage" src={{newItemUrl}}>
+          </md-input-container>
+        </div>
+        <div layout="column">
+          <div layout layout-sm="column">
+
+            <md-input-container flex>
+              <label>Item Name</label>
+              <input ng-model="item.title" name="title">
+            </md-input-container>
+            <md-input-container flex>
+              <label>Asking Price</label>
+              <input ng-model="item.minimum" name="minimum">
+            </md-input-container>
+            <md-input-container flex>
+              <label>Brand (Optional)</label>
+              <input ng-model="item.brand" name="brand">
+            </md-input-container>
           </div>
+          <div layout layout-sm="column">
+            <md-input-container flex>
+              <label>Category</label>
+              <md-select ng-model="item.category" >
+                <md-option ng-repeat="category in categories" value="{{category.abbrev}}" name="category">
+                  {{category.abbrev}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container flex>
+              <label>Size</label>
+              <md-select ng-model="item.size">
+                <md-option ng-repeat="size in sizes" value="{{size.abbrev}}"  name="size">
+                  {{size.abbrev}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container flex>
+              <label>Condition</label>
+              <md-select ng-model="item.condition" >
+                <md-option ng-repeat="condition in conditions" value="{{condition.abbrev}}" name="condition">
+                  {{condition.abbrev}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <md-input-container class="md-block">
+            <label>Item Description</label>
+            <textarea ng-model="item.summary" name="summary" columns="1" md-maxlength="150" rows="2"></textarea>
+          </md-input-container>
         </div>
       </div>
-      <div class="col s8">
-        <div class="row">
-          <div class="input-field col s7">
-            <input name="title" id="title" type="text" class="validate">
-            <label for="title">Item Name</label>
-          </div>
-          <div class="input-field col s5">
-            <input name="minimum" id="minimum" type="text" class="validate">
-            <label for="minimum">Recommended Bid</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <input name="size" id="size" type="text" class="validate">
-            <label for="size">Size</label>
-          </div>
-          <div class="input-field col s6">
-            <input name="category" id="category" type="text" class="validate">
-            <label for="category">Category</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <input name="condition" id="condition" type="text" class="validate">
-            <label for="condition">Condition</label>
-          </div>
-          <div class="input-field col s6">
-            <input name="brand" id="brand" type="text" class="validate">
-            <label for="brand">Brand</label>
-          </div>
-        </div>
+      <div layout="row" layout-align="center center">
+        <div layout="column">
+          <md-button class="md-rising" type="submit" name="action">Submit Item For Sale</md-button>
         </div>
       </div>
-      <div class="col s12">
-        <div class="row">
-          <div class="input-field col s12">
-            <input name="summary" id="summary" type="text" class="validate">
-            <label for="summary">Item Summary</label>
-          </div>
-        </div>
-        <div>
-          <button class="btn waves-effect waves-light" type="submit" name="action">List Item For Sale
-          <i class="material-icons right">done</i>
-          </button>
-        </div>
-        <br>
-      </div>
-    </div>
-  </form>
+    </form>
+  </md-content>
 </div>

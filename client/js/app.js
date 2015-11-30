@@ -20,11 +20,11 @@ $routeProvider
       templateUrl: 'views/profile.html',
       controller: 'mainController'
     })
-    .when('/jeet', {
-      title: 'jeet test',
-      templateUrl: 'views/jeet.html',
-      controller: 'mainController'
-    })
+    // .when('/jeet', {
+    //   title: 'jeet test',
+    //   templateUrl: 'views/jeet.html',
+    //   controller: 'mainController'
+    // })
     .when('/listings', {
       title: 'Current Items Listed',
       templateUrl: 'views/listings.html',
