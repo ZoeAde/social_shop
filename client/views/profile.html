@@ -61,17 +61,27 @@
     <md-tab label="Shop">
         <md-content class="md-padding">
           <div class="container center">
-            <h1 class="md-display-2">Shop All Items</h1>
               <div layout="row">
                 <div ng-init="getItemsForSale()">
-                  <div ng-repeat="item in itemsForSale" class="inline">
-                    <img ng-Mouseover="imageInquiry()" class="feedImage" src={{item.imgUrl}}>
+                  <div  class="inline imageBox">
+
+                    <article class="caption inline" ng-repeat="item in itemsForSale">
+                        <img class="caption__media feedImage" ng-Mouseover="imageInquiry()" ng-Mouseenter="showInfoHover=true" ng-Mouseleave="showInfoHover=false" src={{item.imgUrl}}>
+                        <div class="caption__overlay">
+                            <h1 class="caption__overlay__title">{{ inquiryImg.title }}</h1>
+                            <div class="caption__overlay__content">{{ inquiryImg.summary }}</div>
+                        </div>
+                    </article>
+
                   </div>
                 </div>
               </div>
             </div>
         </md-content>
       </md-tab>
+
+
+
       <md-tab label="Listings">
         <md-content class="md-padding">
           <h1 class="md-display-2">My Current Items Listed For Sale</h1>

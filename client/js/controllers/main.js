@@ -16,7 +16,6 @@ app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', 
   $scope.getItemsForSale = function() {
     $http.get('http://localhost:5000/api/items').then(function (response) {
       $scope.itemsForSale = response.data;
-      console.log($scope.itemsForSale);
     });
   };
 
@@ -26,7 +25,6 @@ app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', 
 
   $scope.imageInquiry = function() {
     $scope.inquiryImg = this.item;
-    console.log($scope.inquiryImg);
   };
 
 

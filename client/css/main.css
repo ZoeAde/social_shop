@@ -2,9 +2,52 @@
   display: inline;
 }
 
+.imageBox {
+  z-index: 900;
+}
+
 .feedImage {
-  height: 30vh;
+  height: 20vh;
   width: auto;
+}
+
+/*/// FEED IMAGE INFO ON HOVER //*/
+.caption {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+.caption__media {
+    /*display: block;*/
+    min-width: 100%;
+    max-width: 100%;
+    height: 32vh;
+
+}
+
+.caption__media:hover {
+    opacity: 0.3;
+}
+
+.caption__overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    color: black;
+    transform: translateY(100%);
+    transition: transform .35s ease-out;
+}
+.caption:hover .caption__overlay {
+    transform: translateY(0);
+}
+/*////*/
+
+
+.infoHover:hover {
+  opacity: 0.5;
 }
 
 .circle-image {
