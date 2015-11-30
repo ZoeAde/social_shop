@@ -43,12 +43,8 @@
 .caption:hover .caption__overlay {
     transform: translateY(0);
 }
-/*////*/
 
-
-.infoHover:hover {
-  opacity: 0.5;
-}
+/*///////////*/
 
 .circle-image {
   border-radius: 50%;

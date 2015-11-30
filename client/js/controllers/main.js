@@ -1,11 +1,9 @@
-app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', '$http', '$interval', '$location', '$routeParams', '$filter', '$document', '$window', '$auth', '$rootScope', function($scope, instagram, feeder, myFactory, $http, $interval, $location, $routeParams, $filter, $document, $window, $auth, $rootScope){
-
+app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', '$http', '$interval', '$location', '$routeParams','$filter', '$document', '$window', '$auth', '$rootScope', function($scope, instagram, feeder, myFactory, $http, $interval, $location, $routeParams, $filter, $document, $window, $auth, $rootScope){
   var vm = this;
 
   vm.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
   };
-
 
   $scope.getFeed = function() {
     $http.get('http://localhost:5000/auth/api/feed').then(function (response) {
@@ -24,7 +22,7 @@ app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', 
   };
 
   $scope.imageInquiry = function() {
-    $scope.inquiryImg = this.item;
+    $rootScope.inquiryImg = this.item;
   };
 
 
@@ -51,87 +49,7 @@ app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', 
     delete $window.localStorage.currentUser;
   };
 
-  $scope.sizes = 'AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-    'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-    'WY'.split(' ').map(function(size) {
-        return {abbrev: size};
-      })
-
-
-
-
 }]);
-
-
-
-//New Item Add
-app.controller('DemoCtrl', function($scope) {
-    $scope.user = {
-      title: 'Developer',
-      email: 'ipsum@lorem.com',
-      firstName: '',
-      lastName: '',
-      company: 'Google',
-      address: '1600 Amphitheatre Pkwy',
-      city: 'Mountain View',
-      state: 'CA',
-      biography: 'Loves kittens, snowboarding, and can type at 130 WPM.\n\nAnd rumor has it she bouldered up Castle Craig!',
-      postalCode: '94043'
-    };
-    $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-    'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-    'WY').split(' ').map(function(state) {
-        return {abbrev: state};
-      })
-  })
-  .config(function($mdThemingProvider) {
-    // Configure a dark theme with primary foreground yellow
-    $mdThemingProvider.theme('docs-dark', 'default')
-      .primaryPalette('yellow')
-      .dark();
-  });
-
-
-//POPUP FOR NEW ITEM
-app.controller('ModalCtrl', function($scope, $mdDialog, $mdMedia) {
-  $scope.status = '  ';
-  $scope.customFullscreen = $mdMedia('sm');
-
-  $scope.showAdvanced = function(ev) {
-    $mdDialog.show({
-      controller: DialogController,
-      templateUrl: 'dialog1.tmpl.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose:true,
-      fullscreen: $mdMedia('sm') && $scope.customFullscreen
-    })
-    .then(function(answer) {
-      $scope.status = 'You said the information was "' + answer + '".';
-    }, function() {
-      $scope.status = 'You cancelled the dialog.';
-    });
-    $scope.$watch(function() {
-      return $mdMedia('sm');
-    }, function(sm) {
-      $scope.customFullscreen = (sm === true);
-    });
-  };
-});
-function DialogController($scope, $mdDialog) {
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer);
-  };
-}
-
-
-
 
 //Controller For New Item Input
 // Dropdown Options - Form Submit
@@ -149,3 +67,64 @@ app.controller('ItemCtrl', function($scope) {
         return {abbrev: condition};
       });
   });
+
+
+
+// TEST MODAL POPUP
+app.controller('AppCtrl', ['$scope', '$mdDialog', function($scope, $mdDialog){
+  var alert;
+  $scope.showDialog = showDialog;
+  $scope.items = [1,2,3];
+
+  function showDialog($event) {
+    var parentEl = angular.element(document.querySelector('md-content'));
+    alert = $mdDialog.alert({
+      parent: parentEl,
+      targetEvent: $event,
+      template:
+        '<md-dialog aria-label="Sample Dialog">' +
+        '  <md-content>'+
+        '    <md-list>'+
+        '      <md-item>'+
+        '       <img src={{ inquiryImg.imgUrl }}>' +
+        '       <p>{{ inquiryImg.title }}</p>' +
+        '      </md-item>'+
+        '    </md-list>'+
+        '  </md-content>' +
+        '  <div class="md-actions">' +
+        '    <md-button ng-click="closeDialog()">' +
+        '      Close' +
+        '    </md-button>' +
+        '    <md-button ng-click="closeDialog()">' +
+        '      Make An Offer' +
+        '    </md-button>' +
+        '  </div>' +
+        '</md-dialog>',
+        locals: {
+          items: $scope.items,
+          closeDialog: $scope.closeDialog
+        },
+        bindToController: true,
+        controllerAs: 'ctrl',
+        controller: 'DialogController'
+    });
+
+    $mdDialog
+      .show( alert )
+      .finally(function() {
+        alert = undefined;
+      });
+  }
+  $scope.closeDialog = function() {
+    $mdDialog.hide();
+  };
+}]);
+
+app.controller('DialogController', function($scope, $mdDialog) {
+  // alert( this.closeDialog );
+  this.closeDialog = $scope.closeDialog;
+
+  $scope.closeDialog = function() {
+      $mdDialog.hide();
+    };
+});
