@@ -24,6 +24,12 @@ app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', 
     $scope.newItemUrl = this.photo;
   };
 
+  $scope.imageInquiry = function() {
+    $scope.inquiryImg = this.item;
+    console.log($scope.inquiryImg);
+  };
+
+
   $scope.isAuthenticated = function() {
     return $auth.isAuthenticated();
   };
