@@ -129,9 +129,9 @@ function DialogController($scope, $mdDialog) {
 
 
 
-
-// TEST
-app.controller('DemoCtrl', function($scope) {
+//Controller For New Item Input
+// Dropdown Options - Form Submit
+app.controller('ItemCtrl', function($scope) {
 
     $scope.categories = ('Shirt Blouse Sweater Jacket Skirt Dress Pants Shorts Shoes Accessories').split(' ').map(function(category) {
         return {abbrev: category};

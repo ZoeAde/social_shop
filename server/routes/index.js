@@ -61,7 +61,9 @@ router.post('/api/items', function(req, res) {
 
 // get all items
 router.get('/api/items', function(req, res) {
-  models.Item.findAll().then(function(items) {
+  models.Item.findAll({
+    attributes: ['id', 'title', 'seller', 'buyer', 'size', 'category', 'condition', 'brand', 'summary', 'minimum', 'imgUrl', 'status', 'createdAt', 'updatedAt' ]
+  }).then(function(items) {
     console.log('my items are:', items);
     res.json(items);
   });

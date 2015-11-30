@@ -64,7 +64,7 @@
             <h1 class="md-display-2">Shop All Items</h1>
               <div layout="row">
                 <div ng-init="getItemsForSale()">
-                  <div ng-repeat="item in itemsForSale" class="inline col s4">
+                  <div ng-repeat="item in itemsForSale" class="inline">
                     <img class="feedImage" src={{photo}}>
                   </div>
                 </div>
@@ -74,7 +74,7 @@
       </md-tab>
       <md-tab label="Listings">
         <md-content class="md-padding">
-          <h1 class="md-display-2">For Sale</h1>
+          <h1 class="md-display-2">My Current Items Listed For Sale</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum enim, vel tempor sapien arcu a tellus. Vivamus convallis sodales ante varius gravida. Curabitur a purus vel augue ultrices ultricies id a nisl. Nullam malesuada consequat diam, a facilisis tortor volutpat et. Sed urna dolor, aliquet vitae posuere vulputate, euismod ac lorem. Sed felis risus, pulvinar at interdum quis, vehicula sed odio. Phasellus in enim venenatis, iaculis tortor eu, bibendum ante. Donec ac tellus dictum neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor purus porttitor vitae. Phasellus ornare dui nec orci posuere, nec luctus mauris semper.</p>
           <p>Morbi viverra, ante vel aliquet tincidunt, leo dolor pharetra quam, at semper massa orci nec magna. Donec posuere nec sapien sed laoreet. Etiam cursus nunc in condimentum facilisis. Etiam in tempor tortor. Vivamus faucibus egestas enim, at convallis diam pulvinar vel. Cras ac orci eget nisi maximus cursus. Nunc urna libero, viverra sit amet nisl at, hendrerit tempor turpis. Maecenas facilisis convallis mi vel tempor. Nullam vitae nunc leo. Cras sed nisl consectetur, rhoncus sapien sit amet, tempus sapien.</p>
           <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
@@ -97,119 +97,8 @@
 
           <new-item></new-item>
 
-          <!-- <h1 class="md-display-2">Add New Listing< -->
-          <!-- h1>
-          <div ng-controller="ModalCtrl" class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="" ng-app="MyApp">
-            <div class="dialog-demo-content" layout="row" layout-wrap="" layout-margin="">
-              <md-button class="md-primary md-raised" ng-click="showAdvanced($event)" flex-sm="20" flex-md="30" flex-gt-md="auto">
-                + New Item
-              </md-button>
-            </div>
-            <div ng-if="status">
-              <br>
-              <b layout="row" layout-align="center center" class="md-padding">
-                {{status}}
-              </b>
-            </div>
-
-          <script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="Mango (Fruit)"  ng-cloak>
-            <form>
-              <md-toolbar>
-                <div class="md-toolbar-tools">
-                  <h2>Select An Item To Upload</h2>
-                  <span flex></span>
-                  <md-button class="md-icon-button" ng-click="cancel()">
-                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
-                  </md-button>
-                </div>
-              </md-toolbar>
-
-              <md-dialog-content>
-                <div class="md-dialog-content">
-                  <h2>Using .md-dialog-content class that sets the padding as the spec</h2>
-                  <div ng-init="getFeed()">
-                    <div ng-repeat="photo in photos" class="inline col s4">
-                      <img ng-click="imageInfo()" class="feedImage" src={{photo}}>
-                    </div>
-                  </div>
-                </div>
-              </md-dialog-content>
-
-              <md-dialog-actions layout="row">
-                <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-                  More on Wikipedia
-                </md-button>
-                <span flex></span>
-                <md-button ng-click="answer('not useful')">
-                 Not Useful
-                </md-button>
-                <md-button ng-click="answer('useful')" style="margin-right:20px;">
-                  Useful
-                </md-button>
-              </md-dialog-actions>
-            </form>
-          </md-dialog>
-          </script>
-          </div> -->
         </md-content>
       </md-tab>
     </md-tabs>
   </md-content>
 </div>
-
-
-<!-- <br><br><br>
-<div class="center">
-  <img src={{user.profile_picture}}>
-</div>
-
-<div class="center">
-  <h5>{{user.username}}</h5>
-</div>
-
-<h4>Edit Profile</h4>
-<div class="row border">
-  <form class="col s12">
-    <div class="row">
-      <div class="input-field col s4">
-        <input value={{user.name}} id="disabled" type="text" class="validate">
-        <label for="disabled">Full Name</label>
-      </div>
-      <div class="input-field col s4">
-        <input id="password" type="email" class="validate">
-        <label for="password">Email</label>
-      </div>
-      <div class="input-field col s4">
-        <input id="email" type="email" class="validate">
-        <label for="email">Phone Number</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s5">
-        <input id="disabled" type="text" class="validate">
-        <label for="disabled">Address</label>
-      </div>
-      <div class="input-field col s3">
-        <input id="disabled" type="text" class="validate">
-        <label for="disabled">City</label>
-      </div>
-      <div class="input-field col s2">
-        <input id="disabled" type="text" class="validate">
-        <label for="disabled">State</label>
-      </div>
-      <div class="input-field col s2">
-        <input id="disabled" type="text" class="validate">
-        <label for="disabled">Zipcode</label>
-      </div>
-    </div>
-    <div>
-      <button class="btn waves-effect waves-light" type="submit" name="action">Save Profile
-      <i class="material-icons right">done</i>
-      </button>
-    </div>
-    <br><br>
-  </form>
-</div>
-
-
- -->
