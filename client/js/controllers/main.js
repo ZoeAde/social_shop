@@ -2,7 +2,6 @@ app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', 
   var vm = this;
 
   vm.toggleSidenav = function(menuId) {
-    console.log('hello');
     $mdSidenav(menuId).toggle();
   };
 
@@ -48,7 +47,9 @@ app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', 
   $scope.logout = function() {
     $auth.logout();
     delete $window.localStorage.currentUser;
+    $location.path('/');
   };
+
 
 }]);
 
@@ -100,8 +101,11 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', function($scope, $mdDialog){
         '    <md-button ng-click="closeDialog()">' +
         '      Close' +
         '    </md-button>' +
-        '    <md-button ng-click="closeDialog()">' +
+        '    <md-button ng-if="isAuthenticated()" ng-click="closeDialog()">' +
         '      Make An Offer' +
+        '    </md-button>' +
+        '    <md-button ng-if="!isAuthenticated()" ng-click="authenticate(' + '&quot;instagram&quot;' + ')">' +
+        '      Sign In To Bid' +
         '    </md-button>' +
         '  </div>' +
         '  </md-content>' +
