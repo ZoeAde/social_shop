@@ -73,21 +73,22 @@ app.controller('ItemCtrl', function($scope) {
 
 
 // TEST MODAL POPUP
-app.controller('AppCtrl', ['$scope', '$mdDialog', function($scope, $mdDialog){
+app.controller('AppCtrl', ['$scope', '$mdDialog', '$rootScope', function($scope, $mdDialog, $rootScope){
   var alert;
   $scope.showDialog = showDialog;
-  $scope.items = 1;
 
   function showDialog($event) {
     console.log($scope.inquiryImg);
+    console.log('user:', $scope.user);
     var parentEl = angular.element(document.querySelector('md-content'));
     alert = $mdDialog.alert({
       parent: parentEl,
       targetEvent: $event,
       template:
-        '<md-dialog aria-label="Sample Dialog" layout="row">' +
+        '<md-dialog aria-label="Sample Dialog" class="dialogBox">' +
+        ' <div ng-hide="hideItemDetails" layout="row">' +
         '  <md-content flex>'+
-        '       <img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src={{ctrl.image.imgUrl}}>' +
+        '       <img style="margin: auto; max-width: 100%;" alt="Sale Item" src={{ctrl.image.imgUrl}}>' +
         '  </md-content>' +
         '  <md-content flex>'+
         '       <h1>{{ ctrl.image.title }}</h1>' +
@@ -101,17 +102,33 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', function($scope, $mdDialog){
         '    <md-button ng-click="closeDialog()">' +
         '      Close' +
         '    </md-button>' +
-        '    <md-button ng-if="isAuthenticated()" ng-click="closeDialog()">' +
+        '    <md-button ng-click="showbid=true; hideItemDetails=true">' +
         '      Make An Offer' +
-        '    </md-button>' +
-        '    <md-button ng-if="!isAuthenticated()" ng-click="authenticate(' + '&quot;instagram&quot;' + ')">' +
-        '      Sign In To Bid' +
         '    </md-button>' +
         '  </div>' +
         '  </md-content>' +
+        ' </div>' +
+        //////////////////////////////
+        ' <div ng-show="showbid">' +
+        '  <md-content flex>'+
+        '       <h1>BID</h1>' +
+        '       <p>Asking Price: ${{ ctrl.image.minimum }}</p>' +
+        '       <p>Item Id: {{ ctrl.image.id }}</p>' +
+        '       <p>User: {{ ctrl.user }}</p>' +
+        '  <div class="md-actions">' +
+        '    <md-button ng-click="closeDialog()">' +
+        '      Close' +
+        '    </md-button >' +
+        '    <md-button ng-click="closeDialog()">' +
+        '      Submit Bid' +
+        '    </md-button>' +
+        '  </div>' +
+        '  </md-content>' +
+        '  </div>' +
         '</md-dialog>',
         locals: {
           image: $scope.inquiryImg,
+          user: $rootScope.currentUser.username,
           closeDialog: $scope.closeDialog
         },
         bindToController: true,
@@ -125,9 +142,11 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', function($scope, $mdDialog){
         alert = undefined;
       });
   }
+
   $scope.closeDialog = function() {
     $mdDialog.hide();
   };
+
 }]);
 
 app.controller('DialogController', function($scope, $mdDialog) {
