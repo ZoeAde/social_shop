@@ -78,8 +78,8 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', '$rootScope', function($scope,
   $scope.showDialog = showDialog;
 
   function showDialog($event) {
-    console.log($scope.inquiryImg);
-    console.log('user:', $scope.user);
+    console.log($scope.inquiryImg.id);
+    console.log('user:', $rootScope.currentUser);
     var parentEl = angular.element(document.querySelector('md-content'));
     alert = $mdDialog.alert({
       parent: parentEl,
@@ -110,20 +110,40 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', '$rootScope', function($scope,
         ' </div>' +
         //////////////////////////////
         ' <div ng-show="showbid">' +
-        '  <md-content flex>'+
-        '       <h1>BID</h1>' +
-        '       <p>Asking Price: ${{ ctrl.image.minimum }}</p>' +
         '       <p>Item Id: {{ ctrl.image.id }}</p>' +
         '       <p>User: {{ ctrl.user }}</p>' +
-        '  <div class="md-actions">' +
-        '    <md-button ng-click="closeDialog()">' +
-        '      Close' +
-        '    </md-button >' +
-        '    <md-button ng-click="closeDialog()">' +
-        '      Submit Bid' +
-        '    </md-button>' +
-        '  </div>' +
-        '  </md-content>' +
+        '   <form name="newBidForm" action="/api/bids" method="post">' +
+        '     <input type="hidden" name="userId" id="userId" value={{ctrl.user}}>' +
+        '     <input type="hidden" name="itemId" id="itemId" value={{ctrl.image.id}}>' +
+        '     <div layout="row" layout-align="center center">' +
+        '       <div layout="column">' +
+        '         <md-input-container flex>' +
+        '           <label>Bid Amount</label>' +
+        '           <input ng-model="bid.amount" name="bidAmount" type="currency">' +
+        '         </md-input-container>' +
+        '       </div>' +
+        '     </div>' +
+        '     <div layout="row" layout-align="center center">' +
+        '       <div layout="column">' +
+        '         <md-button class="md-rising" type="submit" name="action">Submit Bid</md-button>' +
+        '       </div>' +
+        '     </div>' +
+        ' </form>' +
+
+        // '  <md-content flex>'+
+        // '       <h1>BID</h1>' +
+        // '       <p>Asking Price: ${{ ctrl.image.minimum }}</p>' +
+        // '       <p>Item Id: {{ ctrl.image.id }}</p>' +
+        // '       <p>User: {{ ctrl.user }}</p>' +
+        // '  <div class="md-actions">' +
+        // '    <md-button ng-click="closeDialog()">' +
+        // '      Close' +
+        // '    </md-button >' +
+        // '    <md-button ng-click="closeDialog()">' +
+        // '      Submit Bid' +
+        // '    </md-button>' +
+        // '  </div>' +
+        // '  </md-content>' +
         '  </div>' +
         '</md-dialog>',
         locals: {

@@ -17,11 +17,11 @@
 <!--   NAV BAR -->
     <md-toolbar>
       <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-        <h6>
-          <md-button ng-if="isAuthenticated()" ng-click="vm.toggleSidenav('left')" class="md-primary">
-            <i class="material-icons">account_circle</i></a>
-          </md-button>
-        </h6>
+
+        <a ng-if="isAuthenticated()" ng-click="vm.toggleSidenav('left')" class="md-primary">
+          <i class="material-icons">account_circle</i></a>
+        </a>
+
         <a href="/feed"><img src="mend_white.png" width="70px"></a>
         <h6 ng-if="!isAuthenticated()">
           <a ng-click="authenticate('instagram')">Log In</a>
@@ -61,18 +61,18 @@
     <!-- SIDENAV -->
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-8dp" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
     <div layout="row" layout-align="center center">
-      <h3>Profile</h3>
     </div>
+    <br>
     <div layout="row" layout-align="center center">
       <img class="circle-image" src={{user.profile_picture}}>
     </div>
     <div layout="row" layout-align="center center">
+     <h2>{{user.name}}</h2>
+    </div>
+    <div layout="row" layout-align="center center">
      <h4>{{user.username}}</h4>
     </div>
-    <div layout="row" layout-align="start center" class="profile-title">
-      Name: {{ user.name }}
-    </div>
-    <div layout="row" layout-align="start center" class="profile-title">
+<!--     <div layout="row" layout-align="start center" class="profile-title">
       Email: {{ user.email }}
     </div>
     <div layout="row" layout-align="start center" class="profile-title">
@@ -84,7 +84,7 @@
       {{ user.city }}, {{ user.state }}
       <br>
       {{ user.zipcode }}
-    </div>
+    </div> -->
       <md-button class="md-accent">Edit User Information</md-button>
       <md-button class="md-accent">Add New Item</md-button>
       <md-button class="md-accent">View Current Sale Items</md-button>

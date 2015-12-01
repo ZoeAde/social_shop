@@ -119,6 +119,15 @@ router.get('/api/items', function(req, res) {
 // });
 
 // ////////////////////BID///////////////////
-
+// //post new bid
+router.post('/api/bids', function(req, res) {
+  models.Bid.create({
+    itemId: req.body.itemId,
+    userId: req.body.userId,
+    bidAmount: req.body.bidAmount,
+  }).then(function(item) {
+    res.json(item);
+  });
+});
 
 module.exports = router;
