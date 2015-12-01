@@ -74,23 +74,27 @@ app.controller('ItemCtrl', function($scope) {
 app.controller('AppCtrl', ['$scope', '$mdDialog', function($scope, $mdDialog){
   var alert;
   $scope.showDialog = showDialog;
-  $scope.items = [1,2,3];
+  $scope.items = 1;
 
   function showDialog($event) {
+    console.log($scope.inquiryImg);
     var parentEl = angular.element(document.querySelector('md-content'));
     alert = $mdDialog.alert({
       parent: parentEl,
       targetEvent: $event,
       template:
-        '<md-dialog aria-label="Sample Dialog">' +
-        '  <md-content>'+
-        '    <md-list>'+
-        '      <md-item>'+
-        '       <img src={{ inquiryImg.imgUrl }}>' +
-        '       <p>{{ inquiryImg.title }}</p>' +
-        '      </md-item>'+
-        '    </md-list>'+
+        '<md-dialog aria-label="Sample Dialog" layout="row">' +
+        '  <md-content flex>'+
+        '       <img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src={{ctrl.image.imgUrl}}>' +
         '  </md-content>' +
+        '  <md-content flex>'+
+        '       <h1>{{ ctrl.image.title }}</h1>' +
+        '       <a href="https://www.instagram.com/{{ctrl.image.seller}}"><h4>{{ ctrl.image.seller }}</h4></a>' +
+        '       <p>Asking Price: ${{ ctrl.image.minimum }}</p>' +
+        '       <p>Size: {{ ctrl.image.size }}</p>' +
+        '       <p>Category: {{ ctrl.image.category }}</p>' +
+        '       <p>Brand: {{ ctrl.image.brand }}</p>' +
+        '       <p>Description: {{ ctrl.image.summary }}</p>' +
         '  <div class="md-actions">' +
         '    <md-button ng-click="closeDialog()">' +
         '      Close' +
@@ -99,9 +103,10 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', function($scope, $mdDialog){
         '      Make An Offer' +
         '    </md-button>' +
         '  </div>' +
+        '  </md-content>' +
         '</md-dialog>',
         locals: {
-          items: $scope.items,
+          image: $scope.inquiryImg,
           closeDialog: $scope.closeDialog
         },
         bindToController: true,
