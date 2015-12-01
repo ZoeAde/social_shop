@@ -1,4 +1,4 @@
-app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', '$http', '$interval', '$location', '$routeParams','$filter', '$document', '$window', '$auth', '$rootScope', '$mdSidenav', function($scope, instagram, feeder, myFactory, $http, $interval, $location, $routeParams, $filter, $document, $window, $auth, $rootScope, $mdSidenav){
+app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', '$http', '$interval', '$location', '$routeParams','$filter', '$document', '$window', '$auth', '$rootScope', '$mdSidenav', '$mdToast', function($scope, instagram, feeder, myFactory, $http, $interval, $location, $routeParams, $filter, $document, $window, $auth, $rootScope, $mdSidenav, $mdToast){
   var vm = this;
 
   vm.toggleSidenav = function(menuId) {
@@ -50,6 +50,16 @@ app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', 
     $location.path('/');
   };
 
+  // TOAST
+  $scope.showActionToast = function() {
+    var toast = $mdToast.simple()
+          .content('Please login to view item details')
+          .action('OK')
+          .highlightAction(false)
+          .position('top right');
+
+    $mdToast.show(toast);
+  };
 
 }]);
 
@@ -176,4 +186,10 @@ app.controller('DialogController', function($scope, $mdDialog) {
   $scope.closeDialog = function() {
       $mdDialog.hide();
     };
+});
+
+app.controller('ToastCtrl', function($scope, $mdToast) {
+  $scope.closeToast = function() {
+    $mdToast.hide();
+  };
 });

@@ -44,7 +44,7 @@
 
               <article class="caption inline" ng-repeat="item in itemsForSale">
                   <img class="caption__media feedImage" ng-Mouseover="imageInquiry()" ng-Mouseenter="showInfoHover=true" ng-Mouseleave="showInfoHover=false"  src={{item.imgUrl}}>
-                  <div class="caption__overlay" ng-controller="AppCtrl" ng-click="showDialog($event)">
+                  <div class="caption__overlay" ng-controller="AppCtrl" ng-click="showActionToast()">
                       <h1 class="caption__overlay__title">{{ inquiryImg.title }}</h1>
                       <div class="caption__overlay__content">{{ inquiryImg.summary }}</div>
                   </div>

@@ -2,7 +2,6 @@
   <div layout="row">
     <div ng-init="getItemsForSale()">
       <div class="inline imageBox">
-
         <article class="caption inline" ng-repeat="item in itemsForSale">
             <img class="caption__media feedImage" ng-Mouseover="imageInquiry()" ng-Mouseenter="showInfoHover=true" ng-Mouseleave="showInfoHover=false"  src={{item.imgUrl}}>
             <div class="caption__overlay" ng-controller="AppCtrl" ng-click="showDialog($event)">
@@ -15,6 +14,7 @@
     </div>
   </div>
 </div>
+
 
 <div ng-if="isAuthenticated()" ng-cloak>
   <md-content>
