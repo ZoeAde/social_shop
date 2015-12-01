@@ -92,7 +92,28 @@
       <md-tab label="Listings">
         <md-content class="md-padding">
           <h1 class="md-display-2">My Current Items Listed For Sale</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
+          <p>
+          $scope.getUserListings = function() {
+            $http.get('http://localhost:5000/api/items/user/listings').then(function (response) {
+              $scope.userListings = response.data;
+            });
+          };
+        </p>
+        <div layout="row">
+          <div ng-init="getUserListings({{currentUser.username}})">
+            <div class="inline imageBox">
+              <article class="caption inline" ng-repeat="item in userListings">
+                  <img class="caption__media feedImage" ng-Mouseover="imageInquiry()" ng-Mouseenter="showInfoHover=true" ng-Mouseleave="showInfoHover=false"  src={{item.imgUrl}}>
+                  <div class="caption__overlay" ng-controller="AppCtrl" ng-click="showDialog($event)">
+                      <h1 class="caption__overlay__title">{{ item.title }}</h1>
+                      <div class="caption__overlay__content">{{ item.summary }}</div>
+                  </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+
         </md-content>
       </md-tab>
       <md-tab label="Bids">

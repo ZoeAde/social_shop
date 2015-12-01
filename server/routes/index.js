@@ -69,6 +69,20 @@ router.get('/api/items', function(req, res) {
   });
 });
 
+// get all items listed by unique user
+router.get('/api/item/:seller/listings', function(req, res) {
+  models.Item.findAll({
+    where: {
+      seller: req.params.seller
+    }
+  }).then(function(items) {
+    console.log('my items are:', items);
+    res.json(items);
+  });
+});
+
+
+
 // // get single item
 // router.get('/item/:id', function(req, res) {
 //   models.Item.find({
