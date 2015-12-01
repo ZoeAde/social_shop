@@ -1,7 +1,8 @@
-app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', '$http', '$interval', '$location', '$routeParams','$filter', '$document', '$window', '$auth', '$rootScope', function($scope, instagram, feeder, myFactory, $http, $interval, $location, $routeParams, $filter, $document, $window, $auth, $rootScope){
+app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', '$http', '$interval', '$location', '$routeParams','$filter', '$document', '$window', '$auth', '$rootScope', '$mdSidenav', function($scope, instagram, feeder, myFactory, $http, $interval, $location, $routeParams, $filter, $document, $window, $auth, $rootScope, $mdSidenav){
   var vm = this;
 
   vm.toggleSidenav = function(menuId) {
+    console.log('hello');
     $mdSidenav(menuId).toggle();
   };
 

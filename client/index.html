@@ -18,8 +18,9 @@
     <md-toolbar>
       <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
         <h6>
-          <a ng-click=""><i class="material-icons">account_circle</i></a>
-          <ng-md-icon icon="..." style="fill: ..." size="..."></ng-md-icon>
+          <md-button ng-click="vm.toggleSidenav('left')" class="md-primary">
+            <i class="material-icons">account_circle</i></a>
+          </md-button>
         </h6>
         <a href="/feed"><img src="mend_white.png" width="70px"></a>
         <h6 ng-if="!isAuthenticated()">
@@ -38,22 +39,26 @@
       <h3>Profile</h3>
     </div>
     <div layout="row" layout-align="center center">
-      <img class="cirlce-image" src={{user.profile_picture}}>
+      <img class="circle-image" src={{user.profile_picture}}>
     </div>
     <div layout="row" layout-align="center center">
      <h4>{{user.username}}</h4>
     </div>
-    <div layout="row" layout-align="start center">
-      <h6 class="profile-title">Name: {{ user.name }}</h6>
+    <div layout="row" layout-align="start center" class="profile-title">
+      Name: {{ user.name }}
     </div>
-    <div layout="row" layout-align="start center">
-      <h6 class="profile-title">Email: {{ user.email }}</h6>
+    <div layout="row" layout-align="start center" class="profile-title">
+      Email: {{ user.email }}
     </div>
-    <div layout="row" layout-align="start center">
-      <h6 class="profile-title">Phone Number: {{ user.phone }}</h6>
+    <div layout="row" layout-align="start center" class="profile-title">
+      Phone Number: {{ user.phone }}
     </div>
-    <div layout="row" layout-align="start center">
-      <h6 class="profile-title">Address: {{ user.address }}</h6>
+    <div layout="row" layout-align="start center" class="profile-title">
+      Address: {{ user.address }}
+      <br>
+      {{ user.city }}, {{ user.state }}
+      <br>
+      {{ user.zipcode }}
     </div>
       <md-button class="md-accent">Edit User Information</md-button>
       <md-button class="md-accent">Add New Item</md-button>
