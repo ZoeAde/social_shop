@@ -120,8 +120,11 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', '$rootScope', function($scope,
         '    <md-button ng-click="closeDialog()">' +
         '      Close' +
         '    </md-button>' +
-        '    <md-button ng-click="showbid=true; hideItemDetails=true">' +
+        '    <md-button ng-if="currentUser.username != item.seller" ng-click="showbid=true; hideItemDetails=true">' +
         '      Make An Offer' +
+        '    </md-button>' +
+        '    <md-button ng-if="currentUser.username === item.seller" ng-click="showbid=true; hideItemDetails=true">' +
+        '      Edit Your Listing' +
         '    </md-button>' +
         '  </div>' +
         '  </md-content>' +
