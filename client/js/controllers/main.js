@@ -17,17 +17,13 @@ app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', 
     });
   };
 
-  $scope.getUserListings = function(username) {
-    $http.get('http://localhost:5000/api/items/' + username + '/listings').then(function (response) {
-      $scope.userListings = response.data;
+  $scope.getUserBids = function() {
+    $http.get('http://localhost:5000/api/bids').then(function (response) {
+      $rootScope.userBids = response.data;
+      console.log('bids:', $rootScope.userBids);
     });
   };
 
-  $scope.getUserBids = function() {
-    $http.get('http://localhost:5000/api/items/user/bids').then(function (response) {
-      $scope.userBids = response.data;
-    });
-  };
 
   $scope.imageInfo = function() {
     $scope.newItemUrl = this.photo;

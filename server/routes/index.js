@@ -144,4 +144,13 @@ router.post('/api/bids', function(req, res) {
   });
 });
 
+router.get('/api/bids', function(req, res) {
+  models.Bid.findAll({
+    attributes: ['userId', 'itemId', 'bidAmount', 'createdAt', 'updatedAt' ]
+  }).then(function(bids) {
+    console.log('my bids are:', bids);
+    res.json(bids);
+  });
+});
+
 module.exports = router;
