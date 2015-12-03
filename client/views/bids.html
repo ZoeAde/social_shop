@@ -1,19 +1,59 @@
-<md-content class="md-padding">
-  <h1 class="md-display-2">My Current Bids</h1>
-    <div ng-init="getUserBids()">
-      <div layout="row" layout-align="center center" ng-repeat="bid in userBids">
-        <div class="bidBox">
-            <div class="inline">
-              <img class="feedImage" src={{bid.imgUrl}}>
-            </div>
-            <div class="inline">
-                <h1>{{ bid.title }}</h1>
-                <div>{{ bid.summary }}</div>
-                <div>Recommended Bid Amount: {{bid.minimum}}</div>
-                <div>Your Bid Amount: {{bid.bidAmount}}</div>
-                <div>Status: Pending</div>
-            </div>
+<md-content class="md-padding" ng-init="getUserBids()">
+<!--    <div class="main-fab">
+      <md-button class="md-fab md-accent">+</md-button>
+    </div> -->
+<!--     <div layout="row" layout-align="center center">
+      <h1>My Current Bids</h1>
+    </div> -->
+    <md-toolbar layout="column"><span flex="flex"></span>
+      <div class="md-toolbar-tools">
+        <div layout="row" layout-align="center center" flex="flex" class="fill-height">
+          <div ng-hide="toggleSearch" class="md-toolbar-item md-breadcrumb"><span>My Current Bids</span></div><span flex="flex" ng-hide="toggleSearch"></span>
+        </div>
+        <div layout="row" layout-align="center center" flex="flex" class="fill-height">
+          <md-input-container flex="flex" style="padding-left:88px;" ng-show="toggleSearch">
+            <input type="text" ng-model="search"/>
+          </md-input-container>
+          <div class="md-toolbar-item md-tools"><a ng-click="toggleSearch = !toggleSearch" class="md-button md-default-theme"><md-icon> search </md-icon></a></div>
         </div>
       </div>
-    </div>
+    </md-toolbar>
+    <md-content layout="column" flex="flex" ng-click="toggleSearch=false">
+      <md-table headers="headers" content="content" sortable="sortable" filters="search" custom-class="custom" thumbs="thumbs"></md-table>
+    </md-content>
+
+
+<div id="md-table-template" ng-hide="true">
+  <table md-colresize="md-colresize" class="md-table">
+    <thead>
+      <tr class="md-table-headers-row">
+        <th ng-repeat="h in headers" class="md-table-header">
+          <a ng-if="handleSort(h.field)" ng-click="reverse=!reverse;order(h.field,reverse)">{{h.name}}
+            <i ng-show="reverse &amp;&amp; h.field == predicate" class="ion-android-arrow-dropup"></i>
+            <i ng-show="!reverse &amp;&amp; h.field == predicate" class="ion-android-arrow-dropdown"></i>
+          </a>
+          <span ng-if="!handleSort(h.field)">{{h.name}}</span>
+        </th>
+        <th class="md-table-header"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="c in content" class="md-table-content-row">
+        <td>
+          <div>
+            <img class="bidImg" src={{c.imgUrl}}>
+          </div>
+        </td>
+        <td class="md-table-content">{{ c.title }}</td>
+        <td class="md-table-content">Pending</td>
+        <td class="md-table-content">{{ c.bidAmount }}</td>
+        <td class="md-table-content">{{ c.minimum }}</td>
+        <td class="md-table-content">{{ c.seller }}</td>
+        <td class="md-table-content">{{ c.summary }}</td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
 </md-content>

@@ -1,4 +1,68 @@
 app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', '$http', '$interval', '$location', '$routeParams','$filter', '$document', '$window', '$auth', '$rootScope', '$mdSidenav', '$mdToast', function($scope, instagram, feeder, myFactory, $http, $interval, $location, $routeParams, $filter, $document, $window, $auth, $rootScope, $mdSidenav, $mdToast){
+
+// TABLE
+  $scope.toggleSearch = false;
+  $scope.headers = [
+    {
+      name:'Image',
+      field:'imgUrl'
+    },
+    {
+      name: 'Item',
+      field: 'title'
+    },{
+      name: 'Bid Status',
+      field: 'status'
+    },{
+      name:'Bid Amount',
+      field: 'bidAmount'
+    },{
+      name: 'Recommended Price',
+      field: 'minimum'
+    },{
+      name: 'Seller',
+      field: 'seller'
+    },{
+      name: 'Description',
+      field: 'summary'
+    }
+  ];
+
+  // $scope.content = [
+  //   {
+  //     thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg',
+  //     name: 'Bruno Mars',
+  //     description: 'Human',
+  //     last_modified: 'Jun 5, 2014'
+  //   },{
+  //     thumb:'http://www.otakia.com/wp-content/uploads/V_1/article_3573/7405.jpg',
+  //     name: 'AT-AT',
+  //     description: 'Robot',
+  //     last_modified: 'Jun 5, 2014'
+  //   },{
+  //     thumb:'https://speakerdata.s3.amazonaws.com/photo/image/774492/Mark-Ronson-r24.jpg',
+  //     name: 'Mark Ronson',
+  //     description: 'Human',
+  //     last_modified: 'Jun 5, 2014'
+  //   },{
+  //     thumb:'http://25.media.tumblr.com/61ebf04c3cc7a84944aa0246e902f2a7/tumblr_mm35b87dGz1qmwrnuo1_1280.jpg',
+  //     name: 'Daft Punk',
+  //     description: 'Human-Robot',
+  //     last_modified: 'Jun 5, 2014'
+  //   },{
+  //     thumb:'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg',
+  //     name: 'Lady Gaga',
+  //     description: 'Undefined',
+  //     last_modified: 'Jun 5, 2014'
+  //   }
+  // ];
+
+  $scope.custom = {name: 'bold', description:'grey',last_modified: 'grey'};
+  $scope.sortable = ['name', 'description', 'last_modified'];
+  $scope.thumbs = 'thumb';
+  $scope.count = 3;
+// END TABLE
+
   var vm = this;
 
   vm.toggleSidenav = function(menuId) {
@@ -19,7 +83,7 @@ app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', 
 
   $scope.getUserBids = function() {
     $http.get('http://localhost:5000/api/bids').then(function (response) {
-      $rootScope.userBids = response.data;
+      $rootScope.content = response.data;
     });
   };
 
@@ -194,5 +258,16 @@ app.controller('DialogController', function($scope, $mdDialog) {
 app.controller('ToastCtrl', function($scope, $mdToast) {
   $scope.closeToast = function() {
     $mdToast.hide();
+  };
+});
+
+
+
+
+// TABLE FILTER
+app.filter('startFrom',function (){
+  return function (input,start) {
+    start = +start;
+    return input.slice(start);
   };
 });
