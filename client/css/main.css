@@ -17,6 +17,12 @@
   width: 20vw;
 }
 
+/*.bidBox {
+  border-color: black;
+  border: solid;
+  border-width: 2px;
+}
+*/
 /*/// FEED IMAGE INFO ON HOVER //*/
 .caption {
     position: relative;
