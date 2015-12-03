@@ -17,9 +17,11 @@
 <!--   NAV BAR -->
     <md-toolbar>
       <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <a ng-if="isAuthenticated()" class="md-primary">
+          <img class="circle-image" src={{user.profile_picture}}>
+        </a>
+        <a ng-if="!isAuthenticated()" class="md-primary">
 
-        <a ng-if="isAuthenticated()" ng-click="vm.toggleSidenav('left')" class="md-primary">
-          <i class="material-icons">account_circle</i></a>
         </a>
 
         <a href="/feed"><img src="mend_white.png" width="70px"></a>
@@ -34,16 +36,13 @@
 
 <!-- GUEST USER -->
     <div ng-if="!isAuthenticated()" layout="column" flex id="content">
-      <div layout="row"  layout-align="center center">
-        <h1>theMend</h1>
-      </div>
       <div class="container center">
         <div layout="row">
           <div ng-init="getItemsForSale()">
             <div class="inline imageBox">
 
               <article class="caption inline" ng-repeat="item in itemsForSale">
-                  <img class="caption__media feedImage" ng-Mouseover="imageInquiry()" ng-Mouseenter="showInfoHover=true" ng-Mouseleave="showInfoHover=false"  src={{item.imgUrl}}>
+                  <img class="caption__media" ng-Mouseover="imageInquiry()" ng-Mouseenter="showInfoHover=true" ng-Mouseleave="showInfoHover=false"  src={{item.imgUrl}}>
                   <div class="caption__overlay" ng-controller="AppCtrl" ng-click="showActionToast()">
                       <h1 class="caption__overlay__title">{{ inquiryImg.title }}</h1>
                       <div class="caption__overlay__content">{{ inquiryImg.summary }}</div>
@@ -59,37 +58,25 @@
 <!-- AUTHENTICATED USER -->
   <div ng-if="isAuthenticated()" layout="row" flex>
     <!-- SIDENAV -->
-    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-8dp" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-    <div layout="row" layout-align="center center">
-    </div>
-    <br>
-    <div layout="row" layout-align="center center">
-      <img class="circle-image" src={{user.profile_picture}}>
-    </div>
-    <div layout="row" layout-align="center center">
-     <h2>{{user.name}}</h2>
-    </div>
-    <div layout="row" layout-align="center center">
-     <h4>{{user.username}}</h4>
-    </div>
-<!--     <div layout="row" layout-align="start center" class="profile-title">
-      Email: {{ user.email }}
-    </div>
-    <div layout="row" layout-align="start center" class="profile-title">
-      Phone Number: {{ user.phone }}
-    </div>
-    <div layout="row" layout-align="start center" class="profile-title">
-      Address: {{ user.address }}
+<!--     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-8dp" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+      <div layout="row" layout-align="center center">
+      </div>
       <br>
-      {{ user.city }}, {{ user.state }}
-      <br>
-      {{ user.zipcode }}
-    </div> -->
+      <div layout="row" layout-align="center center">
+        <img class="circle-image" src={{user.profile_picture}}>
+      </div>
+      <div layout="row" layout-align="center center">
+       <h2>{{user.name}}</h2>
+      </div>
+      <div layout="row" layout-align="center center">
+       <h4>{{user.username}}</h4>
+      </div>
+
       <md-button class="md-accent">Edit User Information</md-button>
       <md-button class="md-accent">Add New Item</md-button>
       <md-button class="md-accent"> Current Sale Items</md-button>
       <md-button class="md-accent"> Current Bids</md-button>
-    </md-sidenav>
+    </md-sidenav> -->
 
 
     <div layout="column" flex id="content">
@@ -119,10 +106,6 @@
     <script type="text/javascript" src="./js/app.js"></script>
     <script type="text/javascript" src="./js/services.js"></script>
     <script type="text/javascript" src="./js/controllers/main.js"></script>
-
-    <script type="text/javascript" src="./js/directives/nav.js"></script>
-    <script type="text/javascript" src="./js/directives/footer.js"></script>
-    <script type="text/javascript" src="./js/directives/newItem.js"></script>
-    <script type="text/javascript" src="./js/directives/mylistings.js"></script>
+    <script type="text/javascript" src="./js/directives/views.js"></script>
   </body>
 </html>

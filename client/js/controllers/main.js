@@ -5,12 +5,6 @@ app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', 
     $mdSidenav(menuId).toggle();
   };
 
-  $scope.getFeed = function() {
-    $http.get('http://localhost:5000/auth/api/feed').then(function (response) {
-      $scope.photos = response.data;
-    });
-  };
-
   $scope.getItemsForSale = function() {
     $http.get('http://localhost:5000/api/items').then(function (response) {
       $scope.itemsForSale = response.data;
@@ -23,7 +17,6 @@ app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', 
       console.log('bids:', $rootScope.userBids);
     });
   };
-
 
   $scope.imageInfo = function() {
     $scope.newItemUrl = this.photo;
@@ -120,11 +113,8 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', '$rootScope', function($scope,
         '    <md-button ng-click="closeDialog()">' +
         '      Close' +
         '    </md-button>' +
-        '    <md-button ng-if="currentUser.username != item.seller" ng-click="showbid=true; hideItemDetails=true">' +
+        '    <md-button  ng-click="showbid=true; hideItemDetails=true">' +
         '      Make An Offer' +
-        '    </md-button>' +
-        '    <md-button ng-if="currentUser.username === item.seller" ng-click="showbid=true; hideItemDetails=true">' +
-        '      Edit Your Listing' +
         '    </md-button>' +
         '  </div>' +
         '  </md-content>' +
@@ -148,23 +138,12 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', '$rootScope', function($scope,
         '       <div layout="column">' +
         '         <md-button class="md-rising" type="submit" name="action">Submit Bid</md-button>' +
         '       </div>' +
+        '<br>' +
+        '    <md-button ng-click="closeDialog()">' +
+        '      Cancel' +
+        '    </md-button>' +
         '     </div>' +
         ' </form>' +
-
-        // '  <md-content flex>'+
-        // '       <h1>BID</h1>' +
-        // '       <p>Asking Price: ${{ ctrl.image.minimum }}</p>' +
-        // '       <p>Item Id: {{ ctrl.image.id }}</p>' +
-        // '       <p>User: {{ ctrl.user }}</p>' +
-        // '  <div class="md-actions">' +
-        // '    <md-button ng-click="closeDialog()">' +
-        // '      Close' +
-        // '    </md-button >' +
-        // '    <md-button ng-click="closeDialog()">' +
-        // '      Submit Bid' +
-        // '    </md-button>' +
-        // '  </div>' +
-        // '  </md-content>' +
         '  </div>' +
         '</md-dialog>',
         locals: {

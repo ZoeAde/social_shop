@@ -1,26 +1,4 @@
-<div ng-if="!isAuthenticated()" class="container center">
-  <div layout="row" layout-align="center center">
-    <div ng-init="getItemsForSale()">
-      <div class="gapFix" ng-repeat="item in itemsForSale">
-        <article class="caption">
-            <img class="caption__media feedImage" ng-Mouseover="imageInquiry()" ng-Mouseenter="showInfoHover=true" ng-Mouseleave="showInfoHover=false"  src={{item.imgUrl}}>
-            <div class="caption__overlay" ng-controller="AppCtrl" ng-click="showDialog($event)">
-                <h1 class="caption__overlay__title">{{ inquiryImg.title }}</h1>
-                <div class="caption__overlay__content">{{ inquiryImg.summary }}</div>
-            </div>
-        </article>
 
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div ng-if="isAuthenticated()" ng-cloak>
-  <md-content>
-    <md-tabs md-center-tabs md-dynamic-height md-border-bottom>
-
-<!--
 <h4>Edit Profile</h4>
 <div class="row border">
   <form class="col s12">
@@ -63,31 +41,4 @@
     </div>
     <br><br>
   </form>
-</div> -->
-       <!--  </md-content> -->
-    <md-tab label="Shop">
-      <shop></shop>
-    </md-tab>
-
-    <md-tab label="Listings">
-      <my-listings></my-listings>
-    </md-tab>
-
-    <md-tab label="Bids">
-      <bids></bids>
-    </md-tab>
-
-    <md-tab label="Wishlist">
-      <wishlist></wishlist>
-    </md-tab>
-
-    <md-tab label="Add New Listing">
-        <new-item></new-item>
-    </md-tab>
-
-    <md-tab label="Profile">
-        <my-profile></my-profile>
-    </md-tab>
-    </md-tabs>
-  </md-content>
 </div>

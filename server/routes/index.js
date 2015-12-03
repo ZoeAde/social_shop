@@ -132,7 +132,7 @@ router.get('/api/item/:seller/listings', function(req, res) {
 //   });
 // });
 
-// ////////////////////BID///////////////////
+// /////////////////BID/////////////////
 // //post new bid
 router.post('/api/bids', function(req, res) {
   models.Bid.create({
@@ -152,5 +152,7 @@ router.get('/api/bids', function(req, res) {
     res.json(bids);
   });
 });
+
+
 
 module.exports = router;
