@@ -4,13 +4,15 @@
       <div class="container center" ng-show="showFeed">
       <h4>Select An Item To List</h4><br>
         <div layout="row">
-          <div ng-init="getFeed()">
+          <div ng-init="getFeed()" class="centerAlign">
             <div ng-repeat="photo in photos" class="inline">
-              <img ng-click="imageInfo()" class="feedImage" src={{photo}}>
+              <img ng-click="imageInfo()" class="caption__media" src={{photo}}>
             </div>
           </div>
         </div>
       </div>
+
+
 
       <form name="newItemForm" action="/api/items" method="post">
         <input type="hidden" name="seller" id="seller" value={{user.username}}>

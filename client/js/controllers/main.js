@@ -5,6 +5,12 @@ app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', 
     $mdSidenav(menuId).toggle();
   };
 
+  $scope.getFeed = function() {
+    $http.get('http://localhost:5000/auth/api/feed').then(function (response) {
+      $scope.photos = response.data;
+    });
+  };
+
   $scope.getItemsForSale = function() {
     $http.get('http://localhost:5000/api/items').then(function (response) {
       $scope.itemsForSale = response.data;
