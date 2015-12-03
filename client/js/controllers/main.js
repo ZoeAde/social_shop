@@ -20,7 +20,6 @@ app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', 
   $scope.getUserBids = function() {
     $http.get('http://localhost:5000/api/bids').then(function (response) {
       $rootScope.userBids = response.data;
-      console.log('bids:', $rootScope.userBids);
     });
   };
 
@@ -67,6 +66,14 @@ app.controller('mainController', ['$scope', 'instagram', 'feeder', 'myFactory', 
 
     $mdToast.show(toast);
   };
+
+  function init() {
+    if ($scope.isAuthenticated()) {
+      $rootScope.user = JSON.parse(localStorage.getItem('currentUser'));
+    }
+  }
+
+  init();
 
 }]);
 

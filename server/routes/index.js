@@ -145,14 +145,10 @@ router.post('/api/bids', function(req, res) {
 });
 
 router.get('/api/bids', function(req, res) {
-  models.Bid.findAll({
-    attributes: ['userId', 'itemId', 'bidAmount', 'createdAt', 'updatedAt' ]
-  }).then(function(bids) {
-    console.log('my bids are:', bids);
-    res.json(bids);
+  var query = 'SELECT * FROM "Bids", "Items" WHERE "Bids"."itemId" = "Items"."id";';
+  models.sequelize.query(query).spread(function(results, metadata) {
+    res.send(results);
   });
 });
-
-
 
 module.exports = router;
