@@ -1,29 +1,28 @@
 <md-content class="md-padding">
-  <div ng-controller="ItemCtrl" layout="column" ng-cloak ng-init="showFeed=true" class="md-inline-form">
-    <md-content layout-padding>
-      <div class="container center" ng-show="showFeed">
-      <h4>Select An Item To List</h4><br>
-        <div layout="row">
-          <div ng-init="getFeed()" class="centerAlign">
-            <div ng-repeat="photo in photos" class="inline">
-              <img ng-click="imageInfo()" class="caption__media" src={{photo}}>
-            </div>
-          </div>
+  <div ng-controller="ItemCtrl" layout="column" ng-cloak class="md-inline-form">
+    <md-toolbar layout="column"><span flex="flex"></span>
+      <div class="md-toolbar-tools">
+        <div layout="row" layout-align="center center" flex="flex" class="fill-height">
+          <div ng-hide="toggleSearch" class="md-toolbar-item md-breadcrumb"><span>List New Item For Sale</span></div><span flex="flex" ng-hide="toggleSearch"></span>
         </div>
       </div>
+    </md-toolbar>
+    <md-content>
+        <div layout="row" ng-init="getFeed()">
+            <div ng-repeat="photo in photos" class="inline" ng-class="{ 'boxImg': $index == selectedIndex }"
+             ng-click="itemClicked($index)">
+              <img ng-click="imageInfo()" class="caption__media" src={{photo}}>
+            </div>
+        </div>
+    </md-content>
 
-
-
+    <md-content class="formFormat">
+      <h3>SELECT AN ITEM TO LIST</h3>
       <form name="newItemForm" action="/api/items" method="post">
         <input type="hidden" name="seller" id="seller" value={{user.username}}>
         <input type="hidden" name="imgUrl" id="imgUrl" value={{newItemUrl}}>
         <input type="hidden" name="status" id="status" value="listed">
         <div layout="row" layout-align="center center">
-          <div layout="column">
-            <md-input-container>
-              <img class="feedImage" src={{newItemUrl}}>
-            </md-input-container>
-          </div>
           <div layout="column">
             <div layout layout-sm="column">
 

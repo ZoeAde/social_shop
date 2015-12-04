@@ -4,11 +4,11 @@
         <div ng-init="getItemsForSale()">
           <div class="inline">
             <article class="caption inline" ng-repeat="item in itemsForSale">
-                <img class="caption__media" ng-Mouseover="imageInquiry()" ng-Mouseenter="showInfoHover=true" ng-Mouseleave="showInfoHover=false"  src={{item.imgUrl}}>
-                <div class="caption__overlay" ng-controller="AppCtrl" ng-click="showDialog($event)">
-                    <h1 class="caption__overlay__title">{{ inquiryImg.title }}</h1>
-                    <div class="caption__overlay__content">{{ inquiryImg.summary }}</div>
-                </div>
+              <img class="caption__media" ng-Mouseover="imageInquiry()" ng-Mouseenter="showInfoHover=true" ng-Mouseleave="showInfoHover=false"  src={{item.imgUrl}}>
+              <div class="caption__overlay" ng-controller="AppCtrl" ng-click="showDialog($event)">
+                  <h1 class="caption__overlay__title">{{ inquiryImg.title }}</h1>
+                  <div class="caption__overlay__content">{{ inquiryImg.summary }}</div>
+              </div>
             </article>
 
           </div>

@@ -50,20 +50,20 @@ angular.module('myApp').directive('myProfile', function() {
 
 
 // TABLE directives
-app.directive('mdColresize', function ($timeout) {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      scope.$evalAsync(function () {
-        $timeout(function(){ $(element).colResizable({
-          liveDrag: true,
-          fixed: true
+// app.directive('mdColresize', function ($timeout) {
+//   return {
+//     restrict: 'A',
+//     link: function (scope, element, attrs) {
+//       scope.$evalAsync(function () {
+//         $timeout(function(){ $(element).colResizable({
+//           liveDrag: true,
+//           fixed: true
 
-        });},100);
-      });
-    }
-  }
-});
+//         });},100);
+//       });
+//     }
+//   }
+// });
 
 app.directive('mdTable', function () {
   return {
@@ -79,10 +79,6 @@ app.directive('mdTable', function () {
     },
     controller: function ($scope,$filter,$window) {
       var orderBy = $filter('orderBy');
-      $scope.tablePage = 0;
-      $scope.nbOfPages = function () {
-        return Math.ceil($scope.content.length / $scope.count);
-      },
         $scope.handleSort = function (field) {
           if ($scope.sortable.indexOf(field) > -1) { return true; } else { return false; }
       };
@@ -93,9 +89,6 @@ app.directive('mdTable', function () {
       $scope.order($scope.sortable[0],false);
       $scope.getNumber = function (num) {
                 return new Array(num);
-      };
-      $scope.goToPage = function (page) {
-        $scope.tablePage = page;
       };
     },
     template: angular.element(document.querySelector('#md-table-template')).html()
